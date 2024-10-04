@@ -50,11 +50,11 @@ export const priorityToColor = (priority: IPriority, theme: MantineTheme): strin
     case LowPriority:
       return theme.colors.green[7];
     case MediumPriority:
-      return theme.colors.orange[7];
+      return theme.colors.yellow[7];
     case HighPriority:
-      return theme.colors.red[7];
+      return theme.colors.orange[7];
     case ExtremePriority:
-      return theme.colors.violet[7];
+      return theme.colors.red[7];
     default:
       return theme.colors.gray[7];
   }

@@ -1,22 +1,21 @@
-import dayjs from 'dayjs';
 import { FC } from 'react';
-import { Badge, Card, Collapse, Group, Stack, Text, useMantineTheme } from '@mantine/core';
+import { IconAdjustments } from '@tabler/icons-react';
+import { ActionIcon, Card, Container, Grid, Group, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { PriorityBadge } from '@/enums/Priority/components/PriorityBadge';
 import { Description } from './Description/Description';
 import { DescriptionToggle } from './Description/DescriptionToggle';
+import { DueDateBadge } from './DueDate/DueDateBadge';
 import classes from './Task.module.css';
 
 interface TaskProps {
   name: string;
   priority?: number;
-  dueDate?: number;
+  dueDate?: number | string;
   description?: string;
 }
 
 export const Task: FC<TaskProps> = ({ name, priority, dueDate, description }): JSX.Element => {
-  const theme = useMantineTheme();
-
   const [openDescription, { toggle }] = useDisclosure(false);
 
   return (
@@ -26,13 +25,12 @@ export const Task: FC<TaskProps> = ({ name, priority, dueDate, description }): J
           <Text fw={700}>{name}</Text>
           <DescriptionToggle description={description} toggle={toggle} />
         </Group>
-        <Group gap={'xs'}>
+        <Group gap={3}>
           <PriorityBadge priority={priority} />
-          {dueDate ? (
-            <Badge px={4} radius={4} color={theme.colors.yellow[6]}>
-              Due: {dayjs(dueDate).toDate().toLocaleDateString()}
-            </Badge>
-          ) : null}
+          <DueDateBadge dueDate={dueDate} />
+          <ActionIcon variant={'transparent'} size={'sm'}>
+            <IconAdjustments stroke={1.5} />
+          </ActionIcon>
         </Group>
       </Group>
       <Description description={description} open={openDescription} />

@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Badge, Button, Menu, MenuTarget, Popover, Select, useMantineTheme } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Badge, Container, useMantineTheme } from '@mantine/core';
 import IPriority from '../IPriority';
-import { AllPriorities, numberToPriority, priorityToColor } from '../Priority';
+import { numberToPriority, priorityToColor } from '../Priority';
+import classes from './Priority.module.css';
 
 interface PriorityBadgeProps {
   priority: number | IPriority | undefined;
@@ -11,42 +11,17 @@ interface PriorityBadgeProps {
 export const PriorityBadge: FC<PriorityBadgeProps> = ({ priority }): JSX.Element => {
   const theme = useMantineTheme();
 
-  const [openPopover, { toggle }] = useDisclosure(false);
-
   if (typeof priority === 'number') priority = numberToPriority(priority);
 
   return (
     <>
       {priority ? (
-        <Menu opened={openPopover}>
-          <MenuTarget>
-            <Badge
-              px={4}
-              radius={4}
-              color={priorityToColor(priority, theme)}
-              style={{ cursor: 'pointer', userSelect: 'none' }}
-              onDoubleClick={toggle}
-            >
-              Priority: {priority.text}
-            </Badge>
-          </MenuTarget>
-
-          <Menu.Dropdown>
-            {AllPriorities.map((priority) => {
-              return (
-                <Menu.Item
-                  key={'menu-item-' + priority.toString}
-                  onClick={(e) => {
-                    toggle();
-                  }}
-                >
-                  {priority.toString}
-                </Menu.Item>
-              );
-            })}
-          </Menu.Dropdown>
-        </Menu>
-      ) : null}
+        <Badge className={classes.priorityBadge} color={priorityToColor(priority, theme)}>
+          {priority.text}
+        </Badge>
+      ) : (
+        <Container className={classes.priorityBadge} />
+      )}
     </>
   );
 };
