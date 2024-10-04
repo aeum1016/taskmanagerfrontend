@@ -1,0 +1,5 @@
+.descriptionToggle {
+  font-size: x-small;
+  cursor: pointer;
+  user-select: none;
+}

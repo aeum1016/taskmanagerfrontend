@@ -1,3 +1,13 @@
-.title {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+.card {
+  padding-block: 0.25rem;
+  border-radius: 0.1rem;
+}
+
+.cardLineGroup {
+  justify-content: space-between;
+}
+
+.cardNameGroup {
+  align-items: baseline;
+  gap: 0.4rem;
 }

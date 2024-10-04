@@ -2,6 +2,9 @@ import dayjs from 'dayjs';
 import { FC } from 'react';
 import { Badge, Card, Collapse, Group, Stack, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { PriorityBadge } from '@/enums/Priority/components/PriorityBadge';
+import { Description } from './Description/Description';
+import { DescriptionToggle } from './Description/DescriptionToggle';
 import classes from './Task.module.css';
 
 interface TaskProps {
@@ -17,27 +20,14 @@ export const Task: FC<TaskProps> = ({ name, priority, dueDate, description }): J
   const [openDescription, { toggle }] = useDisclosure(false);
 
   return (
-    <Card shadow="sm" py={'xs'} radius={0} withBorder>
-      <Group justify={'space-between'}>
-        <Group align={'baseline'} gap={'xs'}>
+    <Card className={classes.card} shadow="sm" withBorder>
+      <Group className={classes.cardLineGroup}>
+        <Group className={classes.cardNameGroup}>
           <Text fw={700}>{name}</Text>
-          {description ? (
-            <Text
-              size={'xs'}
-              c={theme.colors.blue[4]}
-              style={{ cursor: 'pointer', userSelect: 'none' }}
-              onClick={toggle}
-            >
-              more
-            </Text>
-          ) : null}
+          <DescriptionToggle description={description} toggle={toggle} />
         </Group>
         <Group gap={'xs'}>
-          {priority ? (
-            <Badge px={4} radius={4} color={theme.colors.red[8]}>
-              Priority: {priority}
-            </Badge>
-          ) : null}
+          <PriorityBadge priority={priority} />
           {dueDate ? (
             <Badge px={4} radius={4} color={theme.colors.yellow[6]}>
               Due: {dayjs(dueDate).toDate().toLocaleDateString()}
@@ -45,11 +35,7 @@ export const Task: FC<TaskProps> = ({ name, priority, dueDate, description }): J
           ) : null}
         </Group>
       </Group>
-      <Stack align={'flex-start'} gap={'xs'}>
-        <Collapse in={openDescription}>
-          <Text size={'sm'}>{description}</Text>
-        </Collapse>
-      </Stack>
+      <Description description={description} open={openDescription} />
     </Card>
   );
 };

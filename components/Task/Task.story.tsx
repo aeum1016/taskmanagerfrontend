@@ -5,7 +5,14 @@ export default {
   title: 'Task',
 };
 
-export const Usage = () => <Task name={'Task Name'} priority={1} dueDate={1729000000000} />;
+export const Usage = () => (
+  <Task
+    name={'Task Name'}
+    priority={3}
+    dueDate={1729000000000}
+    description={'I am a description for this task'}
+  />
+);
 export const Multiple = () => (
   <Stack gap={0}>
     <Task name={'Do Laundry'} />
