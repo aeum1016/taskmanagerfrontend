@@ -3,4 +3,5 @@ export default interface ITask {
   priority?: number;
   dueDate?: number | string;
   description?: string;
+  estimateHours?: number;
 }

@@ -3,30 +3,30 @@ import IPriority from './IPriority';
 
 export const LowPriority: IPriority = {
   value: 3,
-  text: 'Do Whenever!',
+  text: '!',
   toString: 'Low Priority',
 };
 
 export const MediumPriority: IPriority = {
   value: 2,
-  text: 'Do Soon!',
+  text: '!!',
   toString: 'Medium Priority',
 };
 
 export const HighPriority: IPriority = {
   value: 1,
-  text: 'Do Now!',
+  text: '!!!',
   toString: 'High Priority',
 };
 
 export const ExtremePriority: IPriority = {
   value: 0,
-  text: 'DROP EVERYTHING!',
-  toString: 'EXTREMELY HIGH Priority',
+  text: '!!!!',
+  toString: 'Top Priority',
 };
 
 export const UnknownPriority: IPriority = {
-  value: -1,
+  value: 4,
   text: 'Unknown Priority',
   toString: 'Unknown Priority',
 };

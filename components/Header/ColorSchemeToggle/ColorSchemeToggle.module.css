@@ -1,0 +1,11 @@
+.dark {
+  @mixin dark {
+    display: none;
+  }
+}
+
+.light {
+  @mixin light {
+    display: none;
+  }
+}

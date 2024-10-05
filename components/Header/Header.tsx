@@ -1,5 +1,3 @@
-'use client';
-
 import { FC } from 'react';
 import { IconUserCircle } from '@tabler/icons-react';
 import { ActionIcon, Group, Title, useMantineTheme } from '@mantine/core';

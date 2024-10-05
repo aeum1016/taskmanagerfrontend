@@ -10,13 +10,19 @@ interface DueDateBadgeProps {
 export const DueDateBadge: FC<DueDateBadgeProps> = ({ dueDate }): JSX.Element => {
   const theme = useMantineTheme();
 
-  if (typeof dueDate === 'number' || typeof dueDate === 'string') dueDate = dayjs(dueDate).toDate();
+  const dateJS = dayjs(dueDate);
+
+  const dueInDays = dateJS.diff(dayjs(), 'days');
+  let color = theme.colors.green[7];
+  if (dueInDays <= 1) color = theme.colors.red[7];
+  else if (dueInDays <= 3) color = theme.colors.orange[7];
+  else if (dueInDays <= 7) color = theme.colors.yellow[7];
 
   return (
     <>
       {dueDate ? (
-        <Badge className={classes.dueDateBadge} color={theme.colors.yellow[6]}>
-          {dueDate.toLocaleDateString()}
+        <Badge className={classes.dueDateBadge} color={color}>
+          {dateJS.format('MM/DD')}
         </Badge>
       ) : (
         <Container className={classes.dueDateBadge} />

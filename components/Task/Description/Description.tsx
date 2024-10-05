@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Collapse, Text, useMantineTheme } from '@mantine/core';
+import { Collapse, Text } from '@mantine/core';
 import classes from './Description.module.css';
 
 interface DescriptionProps {

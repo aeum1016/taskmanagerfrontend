@@ -17,10 +17,10 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
   const [openDescription, { toggle }] = useDisclosure(false);
 
   return (
-    <Card className={classes.card} shadow="sm" withBorder>
+    <Card className={classes.card} withBorder>
       <Group className={classes.cardLineGroup}>
         <Group className={classes.cardNameGroup}>
-          <Text fw={700} truncate>
+          <Text className={classes.cardName} truncate={'end'}>
             {task.name}
           </Text>
           <DescriptionToggle description={task.description} toggle={toggle} />
