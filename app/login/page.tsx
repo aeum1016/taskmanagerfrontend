@@ -1,9 +1,9 @@
-import { Welcome } from '@/components/Welcome/Welcome';
+import { Home } from '@/components/Home/Home';
 
 export default function LoginPage() {
   return (
     <>
-      <Welcome />
+      <Home />
     </>
   );
 }

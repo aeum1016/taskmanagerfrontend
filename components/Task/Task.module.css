@@ -5,9 +5,16 @@
 
 .cardLineGroup {
   justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
 .cardNameGroup {
   align-items: baseline;
   gap: 0.4rem;
+  flex-wrap: nowrap;
+}
+
+.cardBadgesGroup {
+  gap: 0.25rem;
+  flex-wrap: nowrap;
 }

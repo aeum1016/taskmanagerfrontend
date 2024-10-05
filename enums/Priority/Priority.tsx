@@ -38,7 +38,7 @@ export const AllPriorities: IPriority[] = [
   ExtremePriority,
 ];
 
-export const numberToPriority = (val: number): IPriority => {
+export const numberToPriority = (val: number | undefined): IPriority => {
   let foundPriority = AllPriorities.find((element) => element.value === val);
   if (foundPriority !== undefined) return foundPriority;
 
