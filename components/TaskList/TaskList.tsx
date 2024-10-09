@@ -1,6 +1,26 @@
 import dayjs from 'dayjs';
 import { FC } from 'react';
-import { Card, Stack, Text } from '@mantine/core';
+import {
+  IconChevronCompactDown,
+  IconChevronDown,
+  IconDropCircle,
+} from '@tabler/icons-react';
+import {
+  Button,
+  Card,
+  Container,
+  Group,
+  Menu,
+  MenuDropdown,
+  MenuItem,
+  MenuTarget,
+  Pill,
+  Select,
+  Stack,
+  Text,
+  useMantineTheme,
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { numberToPriority } from '@/enums/Priority/Priority';
 import ITask from '@/enums/Task/ITask';
 import { TaskListInternal } from './TaskListInternal';
@@ -8,18 +28,12 @@ import classes from './TaskList.module.css';
 
 interface TaskListProps {
   tasks: ITask[];
-  sortByDueDate?: boolean;
-  sortByPriority?: boolean;
 }
 
-export const TaskList: FC<TaskListProps> = ({
-  tasks,
-  sortByDueDate,
-  sortByPriority,
-}): JSX.Element => {
-  if (!sortByDueDate && !sortByPriority) sortByDueDate = true;
-  if (sortByDueDate === undefined) sortByDueDate = false;
-  if (sortByPriority === undefined) sortByPriority = false;
+export const TaskList: FC<TaskListProps> = ({ tasks }): JSX.Element => {
+  const [sortByDueDate, callbacks] = useDisclosure(true);
+
+  const theme = useMantineTheme();
 
   const dueDates = [
     ...new Set(
@@ -44,6 +58,24 @@ export const TaskList: FC<TaskListProps> = ({
   return (
     <Card className={classes.card} withBorder>
       <Stack className={classes.stack} gap={6}>
+        <Group justify={'flex-end'}>
+          <Menu>
+            <MenuTarget>
+              <Button
+                variant={'outline'}
+                size={'xs'}
+                className={classes.button}
+              >
+                {sortByDueDate ? 'Due Date' : 'Priority'}
+                <IconChevronDown size={20} />
+              </Button>
+            </MenuTarget>
+            <MenuDropdown>
+              <MenuItem onClick={() => callbacks.open()}>Due Date</MenuItem>
+              <MenuItem onClick={() => callbacks.close()}>Priority</MenuItem>
+            </MenuDropdown>
+          </Menu>
+        </Group>
         {sortByDueDate
           ? dueDates.map((date) => {
               return (
@@ -51,8 +83,13 @@ export const TaskList: FC<TaskListProps> = ({
                   key={'task-list-internal' + date}
                   title={date}
                   tasks={tasks.filter((task) => {
-                    if (task.dueDate === undefined) return date === 'No Due Date';
-                    else return dayjs(task.dueDate).toDate().toLocaleDateString() === date;
+                    if (task.dueDate === undefined)
+                      return date === 'No Due Date';
+                    else
+                      return (
+                        dayjs(task.dueDate).toDate().toLocaleDateString() ===
+                        date
+                      );
                   })}
                 />
               );

@@ -10,18 +10,26 @@ interface TaskListTodayProps {
   tasks: ITask[];
 }
 
-export const TaskListToday: FC<TaskListTodayProps> = ({ tasks }): JSX.Element => {
+export const TaskListToday: FC<TaskListTodayProps> = ({
+  tasks,
+}): JSX.Element => {
   const todaysTasks = tasks;
 
   todaysTasks.sort((a, b) => {
     const aValue =
       a.dueDate === undefined
         ? Math.pow(3, numberToPriority(a.priority).value)
-        : Math.pow(dayjs(a.dueDate).diff(dayjs(), 'days'), numberToPriority(a.priority).value);
+        : Math.pow(
+            dayjs(a.dueDate).diff(dayjs(), 'days'),
+            numberToPriority(a.priority).value
+          );
     const bValue =
       b.dueDate === undefined
         ? Math.pow(3, numberToPriority(b.priority).value)
-        : Math.pow(dayjs(b.dueDate).diff(dayjs(), 'days'), numberToPriority(b.priority).value);
+        : Math.pow(
+            dayjs(b.dueDate).diff(dayjs(), 'days'),
+            numberToPriority(b.priority).value
+          );
 
     return aValue - bValue;
   });
@@ -32,7 +40,10 @@ export const TaskListToday: FC<TaskListTodayProps> = ({ tasks }): JSX.Element =>
     if (task.estimateHours === undefined && hours >= 1) {
       hours = hours - 1;
       return true;
-    } else if (task.estimateHours !== undefined && hours >= task.estimateHours) {
+    } else if (
+      task.estimateHours !== undefined &&
+      hours >= task.estimateHours
+    ) {
       hours = hours - task.estimateHours;
       return true;
     }
@@ -41,9 +52,7 @@ export const TaskListToday: FC<TaskListTodayProps> = ({ tasks }): JSX.Element =>
 
   return (
     <Card className={classes.card} withBorder>
-      <Stack className={classes.stack} gap={6}>
-        <TaskListInternal title={"Today's Itinerary"} tasks={filteredTasks} />
-      </Stack>
+      <TaskListInternal title={"Today's Itinerary"} tasks={filteredTasks} />
     </Card>
   );
 };

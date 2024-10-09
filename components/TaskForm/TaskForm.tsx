@@ -27,10 +27,18 @@ export const TaskForm: FC<TaskFormProps> = ({ task }): JSX.Element => {
         <TextInput label={'Name'} placeholder={'Task Name'} />
         <Textarea label={'Description'} description={'Any notes'} />
         <Grid>
-          <GridCol span={6}>
-            <NumberInput label={'Priority'} placeholder={'No Priority'} min={0} max={4} />
+          <GridCol span={4}>
+            <NumberInput label={'Hours'} placeholder={'1 Hour'} min={1} />
           </GridCol>
-          <GridCol span={6}>
+          <GridCol span={4}>
+            <NumberInput
+              label={'Priority'}
+              placeholder={'No Priority'}
+              min={0}
+              max={4}
+            />
+          </GridCol>
+          <GridCol span={4}>
             <DateTimePicker label={'Due Date'} placeholder={'Due Date'} />
           </GridCol>
         </Grid>

@@ -1,7 +1,14 @@
 'use client';
 
 import { FC } from 'react';
-import { AppShell, AppShellHeader, AppShellMain, Grid, GridCol, Stack } from '@mantine/core';
+import {
+  AppShell,
+  AppShellHeader,
+  AppShellMain,
+  Group,
+  Stack,
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { ExampleTasks } from '@/enums/Task/ExampleTask';
 import { Header } from '../Header/Header';
 import { TaskForm } from '../TaskForm/TaskForm';
@@ -10,26 +17,21 @@ import { TaskListToday } from '../TaskList/TaskListToday';
 import classes from './Home.module.css';
 
 export const Home: FC = (): JSX.Element => {
+  const [sortByDueDate, { toggle }] = useDisclosure(true);
+
   return (
-    <AppShell header={{ height: 60 }} padding="md">
+    <AppShell header={{ height: 60 }} padding="lg">
       <AppShellHeader>
         <Header />
       </AppShellHeader>
       <AppShellMain>
-        <Stack>
-          <TaskListToday tasks={ExampleTasks} />
-          <Grid align={'flex-start'} columns={22}>
-            <GridCol span={8}>
-              <TaskList tasks={ExampleTasks} sortByDueDate={true} />
-            </GridCol>
-            <GridCol span={8}>
-              <TaskList tasks={ExampleTasks} sortByPriority={true} />
-            </GridCol>
-            <GridCol span={6}>
-              <TaskForm />
-            </GridCol>
-          </Grid>
-        </Stack>
+        <Group className={classes.taskGroup}>
+          <Stack>
+            <TaskListToday tasks={ExampleTasks} />
+            <TaskForm />
+          </Stack>
+          <TaskList tasks={ExampleTasks} />
+        </Group>
       </AppShellMain>
     </AppShell>
   );
