@@ -1,23 +1,17 @@
+'use client';
+
 import dayjs from 'dayjs';
 import { FC } from 'react';
-import {
-  IconChevronCompactDown,
-  IconChevronDown,
-  IconDropCircle,
-} from '@tabler/icons-react';
+import { IconChevronDown } from '@tabler/icons-react';
 import {
   Button,
   Card,
-  Container,
   Group,
   Menu,
   MenuDropdown,
   MenuItem,
   MenuTarget,
-  Pill,
-  Select,
   Stack,
-  Text,
   useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -38,8 +32,8 @@ export const TaskList: FC<TaskListProps> = ({ tasks }): JSX.Element => {
   const dueDates = [
     ...new Set(
       tasks.map((task) => {
-        if (task.dueDate === undefined) return 10000000000000;
-        return dayjs(task.dueDate).toDate().toLocaleDateString();
+        if (task.duedate === undefined) return 10000000000000;
+        return dayjs(task.duedate).toDate().toLocaleDateString();
       })
     ),
   ]
@@ -83,11 +77,11 @@ export const TaskList: FC<TaskListProps> = ({ tasks }): JSX.Element => {
                   key={'task-list-internal' + date}
                   title={date}
                   tasks={tasks.filter((task) => {
-                    if (task.dueDate === undefined)
+                    if (task.duedate === undefined)
                       return date === 'No Due Date';
                     else
                       return (
-                        dayjs(task.dueDate).toDate().toLocaleDateString() ===
+                        dayjs(task.duedate).toDate().toLocaleDateString() ===
                         date
                       );
                   })}

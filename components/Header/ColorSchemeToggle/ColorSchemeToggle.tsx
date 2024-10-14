@@ -1,5 +1,11 @@
+'use client';
+
 import { IconMoonFilled, IconSunFilled } from '@tabler/icons-react';
-import { ActionIcon, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+  ActionIcon,
+  useMantineColorScheme,
+  useMantineTheme,
+} from '@mantine/core';
 import classes from './ColorSchemeToggle.module.css';
 
 export function ColorSchemeToggle() {

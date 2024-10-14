@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 import { IconAdjustments } from '@tabler/icons-react';
 import { ActionIcon, Card, Group, Text } from '@mantine/core';
@@ -21,13 +23,13 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
       <Group className={classes.cardLineGroup}>
         <Group className={classes.cardNameGroup}>
           <Text className={classes.cardName} truncate={'end'}>
-            {task.name}
+            {task.title}
           </Text>
           <DescriptionToggle description={task.description} toggle={toggle} />
         </Group>
         <Group className={classes.cardBadgesGroup}>
           <PriorityBadge priority={task.priority} />
-          <DueDateBadge dueDate={task.dueDate} />
+          <DueDateBadge dueDate={task.duedate} />
           <ActionIcon variant={'transparent'} size={'sm'}>
             <IconAdjustments stroke={1.5} />
           </ActionIcon>

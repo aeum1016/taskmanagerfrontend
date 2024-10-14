@@ -5,8 +5,6 @@ import { ColorSchemeToggle } from './ColorSchemeToggle/ColorSchemeToggle';
 import classes from './Header.module.css';
 
 export const Header: FC = (): JSX.Element => {
-  const theme = useMantineTheme();
-
   return (
     <Group h={'100%'} justify={'space-between'} align={'center'} gap={0}>
       <Group pl={10}>

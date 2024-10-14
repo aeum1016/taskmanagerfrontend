@@ -1,9 +1,11 @@
 import { Home } from '@/components/Manager/Manager';
 
-export default function HomePage() {
+const ManagerPage = () => {
   return (
     <>
       <Home />
     </>
   );
-}
+};
+
+export default ManagerPage;

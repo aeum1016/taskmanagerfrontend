@@ -1,3 +1,5 @@
+'use client';
+
 import dayjs from 'dayjs';
 import { FC } from 'react';
 import { Card, Stack } from '@mantine/core';
@@ -17,17 +19,17 @@ export const TaskListToday: FC<TaskListTodayProps> = ({
 
   todaysTasks.sort((a, b) => {
     const aValue =
-      a.dueDate === undefined
+      a.duedate === undefined
         ? Math.pow(3, numberToPriority(a.priority).value)
         : Math.pow(
-            dayjs(a.dueDate).diff(dayjs(), 'days'),
+            dayjs(a.duedate).diff(dayjs(), 'days'),
             numberToPriority(a.priority).value
           );
     const bValue =
-      b.dueDate === undefined
+      b.duedate === undefined
         ? Math.pow(3, numberToPriority(b.priority).value)
         : Math.pow(
-            dayjs(b.dueDate).diff(dayjs(), 'days'),
+            dayjs(b.duedate).diff(dayjs(), 'days'),
             numberToPriority(b.priority).value
           );
 
@@ -37,14 +39,14 @@ export const TaskListToday: FC<TaskListTodayProps> = ({
   let hours = 8;
 
   const filteredTasks = todaysTasks.filter((task) => {
-    if (task.estimateHours === undefined && hours >= 1) {
+    if (task.estimatehours === undefined && hours >= 1) {
       hours = hours - 1;
       return true;
     } else if (
-      task.estimateHours !== undefined &&
-      hours >= task.estimateHours
+      task.estimatehours !== undefined &&
+      hours >= task.estimatehours
     ) {
-      hours = hours - task.estimateHours;
+      hours = hours - task.estimatehours;
       return true;
     }
     return false;

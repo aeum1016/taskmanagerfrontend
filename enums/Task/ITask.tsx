@@ -1,7 +1,8 @@
 export default interface ITask {
-  name: string;
+  title: string;
   priority?: number;
-  dueDate?: number | string;
+  duedate?: number | string;
   description?: string;
-  estimateHours?: number;
+  estimatehours?: number;
+  completed: boolean;
 }

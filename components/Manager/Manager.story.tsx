@@ -1,4 +1,4 @@
-import { Home } from './Home';
+import { Home } from './Manager';
 
 export default {
   title: 'Home Page',
