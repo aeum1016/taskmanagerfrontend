@@ -1,5 +1,3 @@
-'use client';
-
 import { FC } from 'react';
 import { IconAdjustments } from '@tabler/icons-react';
 import { ActionIcon, Card, Group, Text } from '@mantine/core';
@@ -16,8 +14,6 @@ interface TaskProps {
 }
 
 export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
-  const [openDescription, { toggle }] = useDisclosure(false);
-
   return (
     <Card className={classes.card} withBorder>
       <Group className={classes.cardLineGroup}>
@@ -25,7 +21,6 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
           <Text className={classes.cardName} truncate={'end'}>
             {task.title}
           </Text>
-          <DescriptionToggle description={task.description} toggle={toggle} />
         </Group>
         <Group className={classes.cardBadgesGroup}>
           <PriorityBadge priority={task.priority} />
@@ -35,7 +30,7 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
           </ActionIcon>
         </Group>
       </Group>
-      <Description description={task.description} open={openDescription} />
+      <Description description={task.description} />
     </Card>
   );
 };

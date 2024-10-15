@@ -4,7 +4,6 @@ export const ExampleTask: ITask = {
   userid: "123456",
   title: 'Example Task',
   priority: 1,
-  duedate: '10/4/2024',
   description: 'This is an example task description.',
   estimatehours: 1,
   completed: false,
@@ -33,7 +32,7 @@ export const ExampleTaskDiffPriority: ITask = {
 export const ExampleTaskNoPriority: ITask = {
   userid: "123456",
   title: 'Example Task No Priority',
-  duedate: '10/10/2024',
+  duedate: 1729000000000,
   description: 'This is an example task description.',
   estimatehours: 2,
   completed: false,
@@ -52,7 +51,7 @@ export const ExampleTaskNoDescription: ITask = {
   userid: "123456",
   title: 'Example Task No Description',
   priority: 1,
-  duedate: '10/4/2024',
+  duedate: 1729000000000,
   estimatehours: 2,
   completed: false,
 };
@@ -61,7 +60,7 @@ export const ExampleTaskNoHours: ITask = {
   userid: "123456",
   title: 'Example Task No Hours',
   priority: 1,
-  duedate: '10/4/2024',
+  duedate: 1729000000000,
   completed: false,
 };
 

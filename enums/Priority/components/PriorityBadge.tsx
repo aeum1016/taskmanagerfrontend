@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from 'react';
 import { Badge, Container, useMantineTheme } from '@mantine/core';
 import IPriority from '../IPriority';

@@ -2,7 +2,7 @@ export default interface ITask {
   userid: string;
   title: string;
   priority?: number;
-  duedate?: number | string | Date;
+  duedate?: number | Date;
   description?: string;
   estimatehours?: number;
   completed: boolean;

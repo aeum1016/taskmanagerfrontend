@@ -1,3 +1,5 @@
+"use client";
+
 import dayjs from 'dayjs';
 import { FC } from 'react';
 import { Badge, Container, useMantineTheme } from '@mantine/core';
