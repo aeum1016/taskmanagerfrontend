@@ -1,6 +1,7 @@
 import ITask from './ITask';
 
 export const ExampleTask: ITask = {
+  userid: "123456",
   title: 'Example Task',
   priority: 1,
   duedate: '10/4/2024',
@@ -10,6 +11,7 @@ export const ExampleTask: ITask = {
 };
 
 export const ExampleTaskNumberDueDate: ITask = {
+  userid: "123456",
   title: 'Example Task Number Due Date',
   priority: 1,
   duedate: 1729000000000,
@@ -19,6 +21,7 @@ export const ExampleTaskNumberDueDate: ITask = {
 };
 
 export const ExampleTaskDiffPriority: ITask = {
+  userid: "123456",
   title: 'Example Task Different Priority',
   priority: 3,
   duedate: 1729000000000,
@@ -28,6 +31,7 @@ export const ExampleTaskDiffPriority: ITask = {
 };
 
 export const ExampleTaskNoPriority: ITask = {
+  userid: "123456",
   title: 'Example Task No Priority',
   duedate: '10/10/2024',
   description: 'This is an example task description.',
@@ -36,6 +40,7 @@ export const ExampleTaskNoPriority: ITask = {
 };
 
 export const ExampleTaskNoDueDate: ITask = {
+  userid: "123456",
   title: 'Example Task No Due Date',
   priority: 1,
   description: 'This is an example task description.',
@@ -44,6 +49,7 @@ export const ExampleTaskNoDueDate: ITask = {
 };
 
 export const ExampleTaskNoDescription: ITask = {
+  userid: "123456",
   title: 'Example Task No Description',
   priority: 1,
   duedate: '10/4/2024',
@@ -52,6 +58,7 @@ export const ExampleTaskNoDescription: ITask = {
 };
 
 export const ExampleTaskNoHours: ITask = {
+  userid: "123456",
   title: 'Example Task No Hours',
   priority: 1,
   duedate: '10/4/2024',
