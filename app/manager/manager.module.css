@@ -1,3 +1,8 @@
-.taskGroup {
+.managerGroup {
   align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.managerContainer {
+  max-width: 70%;
 }

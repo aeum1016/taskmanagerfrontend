@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Stack, Text } from '@mantine/core';
 import ITask from '@/enums/Task/ITask';
 import { Task } from '../../Task/Task';
-import classes from '../TaskList.module.css';
+import classes from './ItineraryInternal.module.css';
 
 interface TaskListInternalProps {
   title: string | undefined;

@@ -1,20 +1,22 @@
-"use client";
+'use client';
 
-import { PurgeTasksCache } from "@/api/task/routes";
-import { ActionIcon } from "@mantine/core";
-import { IconReload } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC } from 'react';
+import { useRouter } from 'next/navigation';
+import { IconReload } from '@tabler/icons-react';
+import { ActionIcon } from '@mantine/core';
+import { PurgeTasksCache } from '@/api/task/routes';
 
 export const ReloadTasks: FC = (): JSX.Element => {
   const router = useRouter();
 
   return (
-    <ActionIcon onClick={() => {
-      PurgeTasksCache()
-      router.refresh()
-    }}>
+    <ActionIcon
+      onClick={() => {
+        PurgeTasksCache();
+        router.refresh();
+      }}
+    >
       <IconReload />
     </ActionIcon>
-  )
-}
+  );
+};

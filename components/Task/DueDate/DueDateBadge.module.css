@@ -1,0 +1,12 @@
+.dueDateBadge {
+  background-color: light-dark(
+    color-mix(in srgb, var(--mantine-color-teal-8) 25%, transparent),
+    color-mix(in srgb, var(--mantine-color-teal-7) 25%, transparent)
+  );
+}
+
+.dueDateText {
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: light-dark(var(--mantine-color-teal-9), var(--mantine-color-teal-1));
+}

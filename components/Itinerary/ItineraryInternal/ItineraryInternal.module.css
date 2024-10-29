@@ -1,13 +1,10 @@
 .card {
-  background: light-dark(var(--mantine-color-gray-0),
-      var(--mantine-color-dark-8));
+  background: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-8)
+  );
   height: 100%;
-  min-width: 24rem
-}
-
-.stack {
-  gap: 1;
-  width: 100%;
+  min-width: 24rem;
 }
 
 .title {
@@ -18,8 +15,10 @@
 
 .button {
   color: light-dark(var(--mantine-color-dark-9), var(--mantine-color-dark-0));
-  border-color: light-dark(var(--mantine-color-dark-9),
-      var(--mantine-color-dark-0));
+  border-color: light-dark(
+    var(--mantine-color-dark-9),
+    var(--mantine-color-dark-0)
+  );
   border-radius: 2px;
   padding-inline: 20px;
 }

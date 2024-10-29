@@ -1,15 +1,22 @@
-"use server";
+'use server';
 
-import ITask from '@/enums/Task/ITask';
 import { revalidatePath } from 'next/cache';
+import ITask from '@/enums/Task/ITask';
 
 export async function PurgeTasksCache() {
-  revalidatePath('/manager')
+  revalidatePath('/manager');
 }
 
 export async function GetAllTasks() {
-  const res = await fetch('http://localhost:8080/task/', { next: { revalidate: 300 } });
-  const data: ITask[] = await res.json();
+  const res = await fetch('http://localhost:8080/task/', {
+    next: { revalidate: 300 },
+  }).catch((error: Error) => {
+    console.error(error.name + ' ' + error.message);
+  });
 
-  return data;
+  if (res !== undefined) {
+    const data: ITask[] = await res.json();
+    return data;
+  }
+  return [];
 }

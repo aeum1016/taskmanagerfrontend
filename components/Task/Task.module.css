@@ -1,28 +1,25 @@
 .card {
-  padding-block: 0.2rem;
-  padding-inline: 0.4rem;
+  padding-block: 0rem;
+  padding-inline: 0rem;
   border-radius: 0.1rem;
 }
 
-.cardLineGroup {
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.cardNameGroup {
-  align-items: baseline;
-  gap: 0.4rem;
-  flex-wrap: nowrap;
-  overflow: hidden;
-}
-
 .cardName {
-  font-size: smaller;
+  font-size: medium;
   font-weight: 600;
+  padding-block: 0.4rem;
+  padding-inline: 0.5rem;
 }
 
-.cardBadgesGroup {
-  gap: 0.25rem;
-  flex-wrap: nowrap;
+.cardDescription {
+  padding-block: 1rem;
+  padding-inline: 0.5rem;
+}
+
+.badge {
+  width: 100%;
+  padding-block: 1rem;
+  border-radius: 0rem;
+  min-width: 3.25rem;
+  user-select: none;
 }

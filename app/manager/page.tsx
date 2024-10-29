@@ -1,21 +1,17 @@
-import { TaskForm } from '@/components/TaskForm/TaskForm';
-import { TaskList } from '@/components/TaskList/TaskList';
-import { TaskListToday } from '@/components/TaskList/TaskListToday';
-import { Group, Stack } from '@mantine/core';
-import classes from "./manager.module.css"
+import { Container, Group } from '@mantine/core';
+import { Itinerary } from '@/components/Itinerary/Itinerary';
 import { ReloadTasks } from '@/components/ReloadTasks/ReloadTasks';
+import { TaskTable } from '@/components/TaskTable/TaskTable';
+import classes from './manager.module.css';
 
 const ManagerPage = () => {
-
   return (
-    <Group className={classes.taskGroup}>
-      <ReloadTasks />
-      <Stack>
-        <TaskListToday />
-        <TaskForm />
-      </Stack>
-      <TaskList />
-    </Group>
+    <Container className={classes.managerContainer}>
+      <Group className={classes.managerGroup}>
+        <Itinerary />
+        <TaskTable />
+      </Group>
+    </Container>
   );
 };
 
