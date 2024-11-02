@@ -8,7 +8,7 @@ export async function PurgeTasksCache() {
 }
 
 export async function GetAllTasks() {
-  const res = await fetch('http://localhost:8080/task/', {
+  const res = await fetch('http://localhost:8080/task', {
     next: { revalidate: 300 },
   }).catch((error: Error) => {
     console.error(error.name + ' ' + error.message);

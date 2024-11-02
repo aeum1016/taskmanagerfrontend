@@ -26,9 +26,7 @@ export const PriorityBadge: FC<PriorityBadgeProps> = ({
           color={priorityToColor(priority, theme)}
           variant={'light'}
         >
-          <Text className={classes.priorityText}>
-            Priority: {priority.text}
-          </Text>
+          <Text className={classes.priorityText}>{priority.text}</Text>
         </Badge>
       ) : (
         <Container className={classes.priorityBadge} />

@@ -27,7 +27,7 @@ export const ExtremePriority: IPriority = {
 
 export const UnknownPriority: IPriority = {
   value: 4,
-  text: 'Unknown Priority',
+  text: '?',
   toString: 'Unknown Priority',
 };
 
@@ -45,7 +45,10 @@ export const numberToPriority = (val: number | undefined): IPriority => {
   return UnknownPriority;
 };
 
-export const priorityToColor = (priority: IPriority, theme: MantineTheme): string => {
+export const priorityToColor = (
+  priority: IPriority,
+  theme: MantineTheme
+): string => {
   switch (priority) {
     case LowPriority:
       return theme.colors.green[7];

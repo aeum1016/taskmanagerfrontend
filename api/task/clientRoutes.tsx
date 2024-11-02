@@ -2,9 +2,10 @@
 
 import { notifications } from '@mantine/notifications';
 import ITask from '@/enums/Task/ITask';
+import { PurgeTasksCache } from './routes';
 
 export async function AddTask(task: ITask) {
-  const res = await fetch('http://localhost:8080/task/', {
+  const res = await fetch('http://localhost:8080/task', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -21,6 +22,7 @@ export async function AddTask(task: ITask) {
           message: 'Successfully added a new task.',
           color: 'green',
         });
+        PurgeTasksCache();
         return data;
       }
     })

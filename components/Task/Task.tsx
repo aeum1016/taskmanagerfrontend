@@ -1,13 +1,5 @@
 import { FC } from 'react';
-import {
-  Card,
-  Container,
-  Grid,
-  GridCol,
-  Group,
-  Stack,
-  Text,
-} from '@mantine/core';
+import { Card, Checkbox, Grid, GridCol, Group, Text } from '@mantine/core';
 import ITask from '@/enums/Task/ITask';
 import { Description } from './Description/Description';
 import { DueDateBadge } from './DueDate/DueDateBadge';
@@ -22,9 +14,12 @@ interface TaskProps {
 export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
   return (
     <Card className={classes.card} withBorder>
-      <Text className={classes.cardName} truncate={'end'}>
-        {task.title}
-      </Text>
+      <Group className={classes.topGroup}>
+        <Text className={classes.cardName} truncate={'end'}>
+          {task.title}
+        </Text>
+        <Checkbox className={classes.checkbox} />
+      </Group>
       <Grid gutter={0}>
         <GridCol span={4}>
           <ExpectedTimeBadge expectation={task.estimatehours} />

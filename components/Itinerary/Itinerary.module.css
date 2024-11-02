@@ -4,5 +4,6 @@
     var(--mantine-color-dark-7)
   );
   height: 100%;
+  min-width: 20rem;
   max-width: 28rem;
 }

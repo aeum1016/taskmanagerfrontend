@@ -12,7 +12,7 @@ export const ExpectedTimeBadge: FC<ExpectedTimeProps> = ({
 }): JSX.Element => {
   return (
     <>
-      {expectation ? (
+      {expectation != undefined ? (
         <Badge
           className={`${taskClasses.badge} ${classes.expectationBadge}`}
           variant={'light'}

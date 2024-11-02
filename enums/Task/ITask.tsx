@@ -6,6 +6,6 @@ export default interface ITask {
   duedate?: number | Date;
   description?: string;
   estimatehours?: number;
-  tags: string;
+  tags: string[];
   completed: boolean;
 }

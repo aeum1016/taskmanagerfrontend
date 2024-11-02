@@ -4,5 +4,5 @@
 }
 
 .managerContainer {
-  max-width: 70%;
+  max-width: max(70%, 1200px);
 }
