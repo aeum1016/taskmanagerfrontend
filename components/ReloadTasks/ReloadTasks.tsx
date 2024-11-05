@@ -4,7 +4,6 @@ import { FC } from 'react';
 import { useRouter } from 'next/navigation';
 import { IconReload } from '@tabler/icons-react';
 import { ActionIcon, useMantineTheme } from '@mantine/core';
-import { PurgeTasksCache } from '@/api/task/routes';
 import classes from './ReloadTasks.module.css';
 
 export const ReloadTasks: FC = (): JSX.Element => {
@@ -16,7 +15,6 @@ export const ReloadTasks: FC = (): JSX.Element => {
       className={classes.button}
       color={theme.colors.cyan[7]}
       onClick={() => {
-        PurgeTasksCache();
         router.refresh();
       }}
     >

@@ -1,14 +1,14 @@
 import dayjs from 'dayjs';
 import { FC } from 'react';
 import { Card } from '@mantine/core';
-import { GetAllTasks } from '@/api/task/routes';
+import { getTasks } from '@/app/api/task/routes';
 import { numberToPriority } from '@/enums/Priority/Priority';
 import ITask from '@/enums/Task/ITask';
 import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
 import classes from './Itinerary.module.css';
 
 export const Itinerary: FC = async ({}): Promise<JSX.Element> => {
-  const todaysTasks: ITask[] = await GetAllTasks();
+  const todaysTasks: ITask[] = await getTasks();
 
   todaysTasks.sort((a, b) => {
     const aValue =

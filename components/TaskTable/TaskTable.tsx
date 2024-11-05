@@ -10,7 +10,7 @@ import {
   TableThead,
   TableTr,
 } from '@mantine/core';
-import { GetAllTasks } from '@/api/task/routes';
+import { getTasks } from '@/app/api/task/routes';
 import ITask from '@/enums/Task/ITask';
 import classes from './TaskTable.module.css';
 
@@ -19,7 +19,7 @@ interface TaskTableProps {}
 export const TaskTable: FC<
   TaskTableProps
 > = async ({}): Promise<JSX.Element> => {
-  const tasks: ITask[] = await GetAllTasks();
+  const tasks: ITask[] = await getTasks();
 
   const rows = tasks.map((task) => (
     <TableTr key={task.id}>

@@ -9,3 +9,11 @@ export default interface ITask {
   tags: string[];
   completed: boolean;
 }
+
+export interface IAddTaskPayload {
+  title: string;
+  priority?: number;
+  duedate?: number | Date;
+  description?: string;
+  estimatehours?: number;
+}

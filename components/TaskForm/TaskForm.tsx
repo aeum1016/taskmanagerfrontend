@@ -2,11 +2,9 @@
 
 import dayjs from 'dayjs';
 import { FC } from 'react';
-import { useRouter } from 'next/navigation';
+import { useFormState } from 'react-dom';
 import {
   Button,
-  Card,
-  Fieldset,
   Grid,
   GridCol,
   NumberInput,
@@ -15,36 +13,36 @@ import {
 } from '@mantine/core';
 import { DateTimePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
-import { AddTask } from '@/api/task/clientRoutes';
-import { PurgeTasksCache } from '@/api/task/routes';
-import ITask from '@/enums/Task/ITask';
+import { addTask } from '@/app/api/task/routes';
+import { IAddTaskPayload } from '@/enums/Task/ITask';
 import classes from './TaskForm.module.css';
 
 interface TaskFormProps {
-  task?: ITask;
   close: () => void;
 }
 
-export const TaskForm: FC<TaskFormProps> = ({ task, close }): JSX.Element => {
-  const router = useRouter();
-
-  const form = useForm({
+export const TaskForm: FC<TaskFormProps> = ({ close }): JSX.Element => {
+  const form = useForm<IAddTaskPayload>({
     mode: 'uncontrolled',
     initialValues: {
-      title: task ? task.title : '',
-      description: task ? task.description : '',
-      estimatehours: task ? task.estimatehours : 0,
-      priority: task ? task.priority : 0,
-      duedate: task
-        ? dayjs(task.duedate).toDate()
-        : dayjs(dayjs().add(1, 'day').toDate().toDateString())
-            .subtract(1, 'minute')
-            .toDate(),
+      title: '',
+      description: '',
+      estimatehours: 0,
+      priority: 0,
+      duedate: dayjs(dayjs().toDate().toDateString())
+        .add(1, 'day')
+        .subtract(1, 'minute')
+        .toDate(),
     },
   });
 
   return (
-    <Fieldset radius={'xs'}>
+    <form
+      action={() => {
+        addTask(form.getValues());
+        close();
+      }}
+    >
       <TextInput
         {...form.getInputProps('title')}
         label={'Title'}
@@ -73,23 +71,9 @@ export const TaskForm: FC<TaskFormProps> = ({ task, close }): JSX.Element => {
         </GridCol>
       </Grid>
       <DateTimePicker {...form.getInputProps('duedate')} label={'Due Date'} />
-      <Button
-        mt={16}
-        fullWidth
-        onClick={() => {
-          AddTask({
-            ...form.getValues(),
-            userid: 'c080e1c2-13ca-492e-8a63-d217eef353c4',
-            completed: false,
-            id: '',
-            tags: [],
-          });
-          close();
-          router.refresh();
-        }}
-      >
+      <Button type={'submit'} mt={16} fullWidth>
         Submit
       </Button>
-    </Fieldset>
+    </form>
   );
 };
