@@ -1,7 +1,6 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { NextRequest } from 'next/server';
 import ITask, { IAddTaskPayload } from '@/enums/Task/ITask';
 
 export async function addTask(taskPayload: IAddTaskPayload) {
