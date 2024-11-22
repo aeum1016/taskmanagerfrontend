@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Card, Checkbox, Grid, GridCol, Group, Text } from '@mantine/core';
+import { Card, Grid, GridCol, Group, Text } from '@mantine/core';
 import ITask from '@/enums/Task/ITask';
-import { CompletedCheckbox } from './Complete/CompletedButton';
+import { CompletedButton } from './Complete/CompletedButton';
 import { Description } from './Description/Description';
 import { DueDateBadge } from './DueDate/DueDateBadge';
 import { ExpectedTimeBadge } from './ExpectedTime/ExpectedTimeBadge';
@@ -19,7 +19,6 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
         <Text className={classes.cardName} truncate={'end'}>
           {task.title}
         </Text>
-        <CompletedCheckbox task={task} />
       </Group>
       <Grid gutter={0}>
         <GridCol span={4}>
@@ -32,6 +31,7 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
           <PriorityBadge priority={task.priority} />
         </GridCol>
       </Grid>
+      <CompletedButton task={task} />
       <Group className={classes.cardDescription}>
         <Description description={task.description} />
       </Group>
