@@ -2,7 +2,6 @@
 
 import { Container, Group, Stack } from '@mantine/core';
 import { Itinerary } from '@/components/Itinerary/Itinerary';
-import { LoginForm } from '@/components/LoginForm/LoginForm';
 import { ReloadTasks } from '@/components/ReloadTasks/ReloadTasks';
 import { CreateTaskButton } from '@/components/TaskButton/CreateTaskButton';
 import { TaskTable } from '@/components/TaskTable/TaskTable';
@@ -17,7 +16,6 @@ const ManagerPage = () => {
           <Group>
             <ReloadTasks />
             <CreateTaskButton />
-            <LoginForm />
           </Group>
           <TaskTable />
         </Stack>

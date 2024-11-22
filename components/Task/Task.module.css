@@ -9,13 +9,6 @@
   align-items: center;
 }
 
-.checkbox {
-  padding-right: 0.5rem;
-  :hover {
-    cursor: pointer;
-  }
-}
-
 .cardName {
   font-size: medium;
   font-weight: 600;

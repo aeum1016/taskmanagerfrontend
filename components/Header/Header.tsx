@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { IconUserCircle } from '@tabler/icons-react';
 import { ActionIcon, Group, Title } from '@mantine/core';
 import { ColorSchemeToggle } from './ColorSchemeToggle/ColorSchemeToggle';
+import { UserIcon } from './UserIcon/UserIcon';
 import classes from './Header.module.css';
 
 export const Header: FC = (): JSX.Element => {
@@ -11,9 +12,7 @@ export const Header: FC = (): JSX.Element => {
         <Title>Tasks</Title>
       </Group>
       <Group pr={10} gap={6}>
-        <ActionIcon variant={'transparent'}>
-          <IconUserCircle className={classes.icon} />
-        </ActionIcon>
+        <UserIcon />
         <ColorSchemeToggle />
       </Group>
     </Group>

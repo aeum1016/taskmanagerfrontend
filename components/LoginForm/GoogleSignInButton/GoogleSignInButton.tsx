@@ -1,13 +1,8 @@
-import { signIn } from '@/auth';
+import { handleGoogleSignIn } from '@/auth/handleGoogleSignIn';
 
 const GoogleSignInButton = () => {
   return (
-    <form
-      action={async () => {
-        'use server';
-        await signIn('google', { redirectTo: '/manager' });
-      }}
-    >
+    <form action={handleGoogleSignIn}>
       <button type="submit">Sign in via Google</button>
     </form>
   );

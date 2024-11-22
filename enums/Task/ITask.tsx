@@ -17,3 +17,14 @@ export interface IAddTaskPayload {
   description?: string;
   estimatehours?: number;
 }
+
+export interface IUpdateTaskPayload {
+  id: string;
+  title?: string;
+  priority?: number;
+  duedate?: number | Date;
+  description?: string;
+  estimatehours?: number;
+  tags?: string[];
+  completed?: boolean;
+}
