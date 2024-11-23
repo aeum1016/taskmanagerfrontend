@@ -53,6 +53,7 @@ export async function addTask(taskPayload: IAddTaskPayload) {
         console.log(data);
         throw new Error(response.status.toString() + ' ' + response.statusText);
       } else {
+        reloadTasks();
         return data;
       }
     })
