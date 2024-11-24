@@ -1,8 +1,4 @@
 .card {
-  background: light-dark(
-    var(--mantine-color-gray-0),
-    var(--mantine-color-dark-7)
-  );
   height: 100%;
   min-width: 20rem;
   max-width: 28rem;

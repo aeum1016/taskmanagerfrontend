@@ -1,14 +1,12 @@
 .container {
-  background: light-dark(
-    var(--mantine-color-gray-0),
-    var(--mantine-color-dark-7)
-  );
+  background: light-dark(var(--mantine-color-gray-0),
+      var(--mantine-color-dark-7));
   height: 100%;
   min-width: 24rem;
 }
 
 .title {
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
 }
 
