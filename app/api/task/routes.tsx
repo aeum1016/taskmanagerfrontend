@@ -11,7 +11,9 @@ export async function reloadTasks() {
 export async function updateTask(updatedTask: IUpdateTaskPayload) {
   const cookieStore = cookies();
 
-  const res = await fetch('http://127.0.0.1:8080/task', {
+  const url = process.env.BACKEND_URL ? process.env.BACKEND_URL : 'http://127.0.0.1:8080';
+
+  const res = await fetch(url + '/task', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -39,7 +41,9 @@ export async function updateTask(updatedTask: IUpdateTaskPayload) {
 export async function addTask(taskPayload: IAddTaskPayload) {
   const cookieStore = cookies();
 
-  const res = await fetch('http://127.0.0.1:8080/task', {
+  const url = process.env.BACKEND_URL ? process.env.BACKEND_URL : 'http://127.0.0.1:8080';
+
+  const res = await fetch(url + '/task', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -67,7 +71,9 @@ export async function addTask(taskPayload: IAddTaskPayload) {
 export async function getTasks() {
   const cookieStore = cookies();
 
-  const res = await fetch('http://127.0.0.1:8080/task', {
+  const url = process.env.BACKEND_URL ? process.env.BACKEND_URL : 'http://127.0.0.1:8080';
+
+  const res = await fetch(url + '/task', {
     method: 'GET',
     headers: {
       Cookie: cookieStore.toString(),
