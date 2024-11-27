@@ -39,7 +39,7 @@ export const TaskTable: FC<
         </Spoiler>
       </TableTd>
       <TableTd>{task.priority}</TableTd>
-      <TableTd>{dayjs(task.duedate).local().toDate().toLocaleString()}</TableTd>
+      <TableTd>{dayjs(task.duedate).toDate().toLocaleString()}</TableTd>
       <TableTd><EditTaskButton task={task} /></TableTd>
       <TableTd><CompletedButton task={task} fullWidth={false} /></TableTd>
     </TableTr>

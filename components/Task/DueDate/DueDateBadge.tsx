@@ -13,7 +13,7 @@ export const DueDateBadge: FC<DueDateBadgeProps> = ({
   dueDate,
 }): JSX.Element => {
   dayjs.extend(utc)
-  const dateJS = dayjs(dueDate).local();
+  const dateJS = dayjs(dueDate);
 
   return (
     <>

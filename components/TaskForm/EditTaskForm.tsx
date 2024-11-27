@@ -33,7 +33,7 @@ export const EditTaskForm: FC<EditTaskFormProps> = ({ task, close }): JSX.Elemen
       description: task.description,
       estimatehours: task.estimatehours,
       priority: task.priority,
-      duedate: dayjs(task.duedate).local().toDate(),
+      duedate: dayjs(task.duedate).toDate(),
     },
   });
 

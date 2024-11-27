@@ -30,7 +30,7 @@ export const TaskForm: FC<TaskFormProps> = ({ close }): JSX.Element => {
       description: '',
       estimatehours: 0,
       priority: 0,
-      duedate: dayjs(dayjs().toDate().toDateString()).local()
+      duedate: dayjs(dayjs().toDate().toDateString())
         .add(1, 'day')
         .subtract(1, 'minute')
         .toDate(),
