@@ -21,14 +21,14 @@ export function sortingFunction(a: ITask, b: ITask) {
   return aValue - bValue;
 }
 
-export function filterForNextUp(task: ITask, hours: number) {
+export function filterForNextUp(task: ITask, hours: { left: number }) {
   if (task.completed) return false;
 
-  if (task.estimatehours === undefined && hours >= 1) {
-    hours = hours - 1;
+  if (task.estimatehours === undefined && hours.left >= 1) {
+    hours.left = hours.left - 1;
     return true;
-  } else if (task.estimatehours !== undefined && hours >= task.estimatehours) {
-    hours = hours - task.estimatehours;
+  } else if (task.estimatehours !== undefined && hours.left >= task.estimatehours) {
+    hours.left = hours.left - task.estimatehours;
     return true;
   }
   return false;

@@ -11,9 +11,11 @@ export const Itinerary: FC = async ({ }): Promise<JSX.Element> => {
 
   todaysTasks.sort(sortingFunction);
 
-  let hours = process.env.ITINERARY_HOURS
-    ? parseInt(process.env.ITINERARY_HOURS)
-    : 8;
+  const hours = {
+    left: process.env.ITINERARY_HOURS
+      ? parseInt(process.env.ITINERARY_HOURS)
+      : 8
+  }
 
   const filteredTasks = todaysTasks.filter((task) =>
     filterForNextUp(task, hours)

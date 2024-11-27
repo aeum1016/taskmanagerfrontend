@@ -9,23 +9,23 @@ import classes from './CompletedButton.module.css';
 
 interface CompletedButtonProps {
   task: ITask;
+  fullWidth: boolean;
 }
 
 export const CompletedButton: FC<CompletedButtonProps> = ({
-  task,
+  task, fullWidth
 }): JSX.Element => {
-  const [opened, { open, close }] = useDisclosure(false);
-
   return (
     <Button
+      className={classes.button}
       variant={task.completed ? 'filled' : 'outline'}
       onClick={() => {
         updateTask({ ...task, completed: !task.completed });
         reloadTasks();
       }}
-      fullWidth
+      fullWidth={fullWidth}
     >
-      {task.completed ? 'Open Task' : 'Complete Task'}
+      {task.completed ? 'Open' : 'Complete'}
     </Button>
   );
 };

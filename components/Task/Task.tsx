@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Card, Grid, GridCol, Group, Text } from '@mantine/core';
 import ITask from '@/enums/Task/ITask';
-import { CompletedButton } from './Complete/CompletedButton';
+import { CompletedButton } from '../TaskButton/CompleteTask/CompletedButton';
 import { Description } from './Description/Description';
 import { DueDateBadge } from './DueDate/DueDateBadge';
 import { ExpectedTimeBadge } from './ExpectedTime/ExpectedTimeBadge';
@@ -31,7 +31,7 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
           <PriorityBadge priority={task.priority} />
         </GridCol>
       </Grid>
-      <CompletedButton task={task} />
+      <CompletedButton task={task} fullWidth />
       <Group className={classes.cardDescription}>
         <Description description={task.description} />
       </Group>

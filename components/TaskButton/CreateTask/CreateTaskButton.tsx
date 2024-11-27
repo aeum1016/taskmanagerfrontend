@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import { Button, Modal, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { TaskForm } from '../TaskForm/TaskForm';
+import { TaskForm } from '../../TaskForm/TaskForm';
 import classes from './CreateTaskButton.module.css';
 
 export const CreateTaskButton: FC = (): JSX.Element => {

@@ -12,33 +12,32 @@ import {
 } from '@mantine/core';
 import { DateTimePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
-import { addTask } from '@/app/api/task/routes';
-import { IAddTaskPayload } from '@/enums/Task/ITask';
+import { updateTask } from '@/app/api/task/routes';
+import ITask, { IUpdateTaskPayload } from '@/enums/Task/ITask';
 import classes from './TaskForm.module.css';
 
-interface TaskFormProps {
+interface EditTaskFormProps {
+  task: ITask
   close: () => void;
 }
 
-export const TaskForm: FC<TaskFormProps> = ({ close }): JSX.Element => {
-  const form = useForm<IAddTaskPayload>({
+export const EditTaskForm: FC<EditTaskFormProps> = ({ task, close }): JSX.Element => {
+  const form = useForm<IUpdateTaskPayload>({
     mode: 'uncontrolled',
     initialValues: {
-      title: '',
-      description: '',
-      estimatehours: 0,
-      priority: 0,
-      duedate: dayjs(dayjs().toDate().toDateString())
-        .add(1, 'day')
-        .subtract(1, 'minute')
-        .toDate(),
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      estimatehours: task.estimatehours,
+      priority: task.priority,
+      duedate: dayjs(task.duedate).toDate(),
     },
   });
 
   return (
     <form
       action={() => {
-        addTask(form.getValues());
+        updateTask(form.getValues());
         close();
       }}
     >

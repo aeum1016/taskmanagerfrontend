@@ -26,6 +26,7 @@ export async function updateTask(updatedTask: IUpdateTaskPayload) {
         console.log(data);
         throw new Error(response.status.toString() + ' ' + response.statusText);
       } else {
+        reloadTasks();
         return data;
       }
     })

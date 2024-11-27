@@ -13,7 +13,9 @@ import {
 import { getTasks } from '@/app/api/task/routes';
 import ITask from '@/enums/Task/ITask';
 import classes from './TaskTable.module.css';
-import { filterForCompleted } from '@/enums/Task/TaskSort';
+import { filterForCompleted, sortingFunction } from '@/enums/Task/TaskSort';
+import { EditTaskButton } from '../TaskButton/EditTask/EditTaskButton';
+import { CompletedButton } from '../TaskButton/CompleteTask/CompletedButton';
 
 interface TaskTableProps { }
 
@@ -22,8 +24,9 @@ export const TaskTable: FC<
 > = async ({ }): Promise<JSX.Element> => {
   const tasks: ITask[] = await getTasks();
 
-  const openTasks = tasks.filter((task) => filterForCompleted(task, false));
-  const completedTasks = tasks.filter((task) => filterForCompleted(task, true));
+  const sortedTasks = tasks.sort(sortingFunction)
+  const openTasks = sortedTasks.filter((task) => filterForCompleted(task, false));
+  const completedTasks = sortedTasks.filter((task) => filterForCompleted(task, true));
 
   const openRows = openTasks.map((task) => (
     <TableTr key={task.id}>
@@ -35,6 +38,8 @@ export const TaskTable: FC<
       </TableTd>
       <TableTd>{task.priority}</TableTd>
       <TableTd>{dayjs(task.duedate).toDate().toLocaleString()}</TableTd>
+      <TableTd><EditTaskButton task={task} /></TableTd>
+      <TableTd><CompletedButton task={task} fullWidth={false} /></TableTd>
     </TableTr>
   ));
 
@@ -48,6 +53,8 @@ export const TaskTable: FC<
       </TableTd>
       <TableTd>{task.priority}</TableTd>
       <TableTd>{dayjs(task.duedate).toDate().toLocaleString()}</TableTd>
+      <TableTd><EditTaskButton task={task} /></TableTd>
+      <TableTd><CompletedButton task={task} fullWidth={false} /></TableTd>
     </TableTr>
   ));
 

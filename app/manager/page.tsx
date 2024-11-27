@@ -3,7 +3,7 @@
 import { Container, Group, Stack } from '@mantine/core';
 import { Itinerary } from '@/components/Itinerary/Itinerary';
 import { ReloadTasks } from '@/components/ReloadTasks/ReloadTasks';
-import { CreateTaskButton } from '@/components/TaskButton/CreateTaskButton';
+import { CreateTaskButton } from '@/components/TaskButton/CreateTask/CreateTaskButton';
 import { TaskTable } from '@/components/TaskTable/TaskTable';
 import classes from './manager.module.css';
 
