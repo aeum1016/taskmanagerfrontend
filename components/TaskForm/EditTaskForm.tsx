@@ -1,6 +1,7 @@
 'use client';
 
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
 import { FC } from 'react';
 import {
   Button,
@@ -22,6 +23,8 @@ interface EditTaskFormProps {
 }
 
 export const EditTaskForm: FC<EditTaskFormProps> = ({ task, close }): JSX.Element => {
+  dayjs.extend(utc)
+
   const form = useForm<IUpdateTaskPayload>({
     mode: 'uncontrolled',
     initialValues: {
@@ -30,7 +33,7 @@ export const EditTaskForm: FC<EditTaskFormProps> = ({ task, close }): JSX.Elemen
       description: task.description,
       estimatehours: task.estimatehours,
       priority: task.priority,
-      duedate: dayjs(task.duedate).toDate(),
+      duedate: dayjs(task.duedate).local().toDate(),
     },
   });
 

@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
 import { FC } from 'react';
 import {
   Spoiler,
@@ -22,6 +23,7 @@ interface TaskTableProps { }
 export const TaskTable: FC<
   TaskTableProps
 > = async ({ }): Promise<JSX.Element> => {
+
   const tasks: ITask[] = await getTasks();
 
   const sortedTasks = tasks.sort(sortingFunction)
@@ -37,7 +39,7 @@ export const TaskTable: FC<
         </Spoiler>
       </TableTd>
       <TableTd>{task.priority}</TableTd>
-      <TableTd>{dayjs(task.duedate).toDate().toLocaleString()}</TableTd>
+      <TableTd>{dayjs(task.duedate).local().toDate().toLocaleString()}</TableTd>
       <TableTd><EditTaskButton task={task} /></TableTd>
       <TableTd><CompletedButton task={task} fullWidth={false} /></TableTd>
     </TableTr>

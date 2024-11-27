@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
 import { FC } from 'react';
 import { Badge, Container, Text } from '@mantine/core';
 import taskClasses from '../Task.module.css';
@@ -11,7 +12,8 @@ interface DueDateBadgeProps {
 export const DueDateBadge: FC<DueDateBadgeProps> = ({
   dueDate,
 }): JSX.Element => {
-  const dateJS = dayjs(dueDate);
+  dayjs.extend(utc)
+  const dateJS = dayjs(dueDate).local();
 
   return (
     <>
