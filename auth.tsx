@@ -22,7 +22,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   session: {
     strategy: 'database',
-    maxAge: 12 * 60 * 60,
+    maxAge: 24 * 60 * 60,
   },
   pages: {
     signIn: '/user/login',
@@ -30,6 +30,16 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
     Google({
       allowDangerousEmailAccountLinking: true,
+      authorization: {
+        params: {
+          scope: [
+            "openid",
+            "https://www.googleapis.com/auth/calendar",
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile",
+          ].join(" "),
+        }
+      }
     }),
     Credentials({
       credentials: {

@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { IconUserCircle } from '@tabler/icons-react';
-import { ActionIcon, Group, Title } from '@mantine/core';
+import { Group, Title } from '@mantine/core';
 import { ColorSchemeToggle } from './ColorSchemeToggle/ColorSchemeToggle';
 import { UserIcon } from './UserIcon/UserIcon';
 import classes from './Header.module.css';
