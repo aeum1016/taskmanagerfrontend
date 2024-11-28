@@ -38,7 +38,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             "https://www.googleapis.com/auth/userinfo.email",
             "https://www.googleapis.com/auth/userinfo.profile",
           ].join(" "),
-        }
+          access_type: "offline",
+          response_type: "code",
+        },
       }
     }),
     Credentials({

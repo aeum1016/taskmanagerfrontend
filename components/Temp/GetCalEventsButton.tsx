@@ -1,20 +1,15 @@
-'use client';
-
 import { FC } from 'react';
 import { Button, useMantineTheme } from '@mantine/core';
 import { getCalTasks } from '@/app/api/calendar/routes';
 
 
 
-export const GetCalEventsButton: FC = (): JSX.Element => {
-  const theme = useMantineTheme();
+export const GetCalEventsButton: FC = async (): Promise<JSX.Element> => {
+  const tasks = await getCalTasks();
 
   return (
     <>
-      <Button
-        color={theme.colors.cyan[7]}
-        onClick={() => getCalTasks()}
-      >
+      <Button>
         Get Cal Tasks
       </Button>
     </>

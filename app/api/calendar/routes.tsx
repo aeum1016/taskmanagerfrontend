@@ -2,9 +2,12 @@
 
 import { cookies } from "next/headers"
 import { getAccessToken } from "../user/routes";
+import { auth } from "@/auth";
 
 export async function getCalTasks() {
   const cookieStore = cookies();
+  const session = await auth();
+  if (!session) return;
 
   const token = await getAccessToken();
 
@@ -20,7 +23,6 @@ export async function getCalTasks() {
     return undefined;
   });
   if (res !== undefined && res.ok) {
-    console.log(res);
     return await res.json();
   }
   return {}
