@@ -18,6 +18,12 @@ export function getFreeHours(used: TimeIntervals) {
       start = dayjs(used.intervals[usedIndex].end).add(10, "minute")
       usedIndex = usedIndex + 1;
     }
+    else {
+      if (start.add(20, "minute").diff(end) < 0) {
+        freeHours.intervals.push({ start: start.toDate(), end: dayjs(end).toDate() })
+        start = dayjs(end)
+      }
+    }
   }
 
   return freeHours
