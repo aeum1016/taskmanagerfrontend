@@ -59,7 +59,7 @@ export const TaskForm: FC<TaskFormProps> = ({ close }): JSX.Element => {
           <NumberInput
             {...form.getInputProps('estimatehours')}
             label={'Estimated Hours'}
-            min={1}
+            min={0}
           />
         </GridCol>
         <GridCol span={6}>

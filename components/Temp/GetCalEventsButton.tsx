@@ -6,8 +6,6 @@ import { getFreeHours } from '@/enums/Calendar/CalendarFuncs';
 export const GetCalEventsButton: FC = async (): Promise<JSX.Element> => {
   const busyPeriods = await getFreeBusy();
   const freePeriods = getFreeHours(busyPeriods);
-  console.log(busyPeriods)
-  console.log(freePeriods)
 
   return (
     <>
