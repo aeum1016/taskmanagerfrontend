@@ -27,7 +27,7 @@ export function filterForNextUp(task: ITask, hours: { left: number }) {
   if (task.estimatehours === undefined && hours.left >= 1) {
     hours.left = hours.left - 1;
     return true;
-  } else if (task.estimatehours !== undefined && hours.left >= task.estimatehours) {
+  } else if (task.estimatehours !== undefined && hours.left > 0) {
     hours.left = hours.left - task.estimatehours;
     return true;
   }
