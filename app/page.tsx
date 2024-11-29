@@ -1,14 +1,10 @@
-import { cookies } from 'next/headers';
+import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
-export default function HomePage() {
-  // if logged in user, go to manager page
-  // else go to login page
-  const user_jwt = cookies().get('jwt');
+export default async function HomePage() {
 
-  // perform validation logic
-  const validUser = true;
+  const session = await auth()
 
-  if (validUser) redirect('/manager');
+  if (session) redirect('/manager');
   else redirect('/login');
 }

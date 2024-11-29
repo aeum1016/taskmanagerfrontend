@@ -12,15 +12,16 @@ interface DueDateBadgeProps {
 export const DueDateBadge: FC<DueDateBadgeProps> = ({
   dueDate,
 }): JSX.Element => {
-  dayjs.extend(utc)
-  const dateJS = dayjs(dueDate);
+
+  console.log(dayjs(dueDate).toDate().toLocaleDateString())
+  console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
 
   return (
     <>
       {dueDate ? (
         <Badge className={`${taskClasses.badge} ${classes.dueDateBadge}`}>
           <Text className={classes.dueDateText}>
-            Due: {dateJS.format('MM/DD')}
+            Due: {dayjs(dueDate).toDate().toLocaleDateString()}
           </Text>
         </Badge>
       ) : (
