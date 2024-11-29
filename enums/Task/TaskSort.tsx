@@ -5,16 +5,16 @@ import ITask from "./ITask";
 export function sortingFunction(a: ITask, b: ITask) {
   const aValue =
     a.duedate === undefined
-      ? Math.pow(3, numberToPriority(a.priority).value)
+      ? Math.pow(24, numberToPriority(a.priority).value)
       : Math.pow(
-        dayjs(a.duedate).diff(dayjs(), 'days'),
+        Math.max(0, dayjs(a.duedate).diff(dayjs(), 'hours')),
         numberToPriority(a.priority).value
       );
   const bValue =
     b.duedate === undefined
-      ? Math.pow(3, numberToPriority(b.priority).value)
+      ? Math.pow(24, numberToPriority(b.priority).value)
       : Math.pow(
-        dayjs(b.duedate).diff(dayjs(), 'days'),
+        Math.max(0, dayjs(b.duedate).diff(dayjs(), 'hours')),
         numberToPriority(b.priority).value
       );
 
