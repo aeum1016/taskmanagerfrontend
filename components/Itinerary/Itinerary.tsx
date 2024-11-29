@@ -5,15 +5,17 @@ import ITask from '@/enums/Task/ITask';
 import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
 import classes from './Itinerary.module.css';
 import { filterForCompleted, filterForNextUp, sortingFunction } from '@/enums/Task/TaskSort';
-import { getFreeHoursDirect } from '@/enums/Calendar/CalendarFuncs';
+import { getFreeHours } from '@/enums/Calendar/CalendarFuncs';
 import { IntervalText } from './IntervalText/IntervalText';
+import { getFreeBusy } from '@/app/api/calendar/routes';
 
 export const Itinerary: FC = async ({ }): Promise<JSX.Element> => {
   const todaysTasks: ITask[] = await getTasks();
 
   todaysTasks.sort(sortingFunction);
 
-  const hours = await getFreeHoursDirect();
+  const busyHours = await getFreeBusy();
+  const hours = getFreeHours(busyHours);
 
   const left = { left: (hours.minutesFree / 60) }
 
@@ -25,7 +27,7 @@ export const Itinerary: FC = async ({ }): Promise<JSX.Element> => {
 
   return (
     <Stack className={classes.card}>
-      <IntervalText hours={hours} />
+      <IntervalText busyHours={busyHours} />
       <TaskListInternal title={"Today's Itinerary"} tasks={filteredTasks} />
       <TaskListInternal title={'Completed Tasks'} tasks={completedTasks} />
     </Stack>

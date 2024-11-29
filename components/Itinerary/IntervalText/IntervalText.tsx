@@ -1,17 +1,17 @@
 "use client";
 
+import { getFreeHours } from "@/enums/Calendar/CalendarFuncs";
 import { TimeIntervals } from "@/enums/Calendar/CalendarTypes";
 import { Text } from "@mantine/core";
 import { FC } from "react";
 
 interface IntervalTextProps {
-  hours: {
-    freeHours: TimeIntervals,
-    minutesFree: number,
-  }
+  busyHours: TimeIntervals
 }
 
-export const IntervalText: FC<IntervalTextProps> = ({ hours }): JSX.Element => {
+export const IntervalText: FC<IntervalTextProps> = ({ busyHours }): JSX.Element => {
+  const hours = getFreeHours(busyHours);
+
   return (
     <>
       <Text>{Math.floor(hours.minutesFree / 60)} Hours {hours.minutesFree % 60} Minutes Free</Text>

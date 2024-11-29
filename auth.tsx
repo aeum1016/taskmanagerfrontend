@@ -17,7 +17,6 @@ export const pool = new Pool({
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   trustHost: true,
-  debug: true,
   adapter: PostgresAdapter(pool),
   secret: process.env.AUTH_SECRET,
   session: {
