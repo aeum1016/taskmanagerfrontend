@@ -9,6 +9,8 @@ export async function getFreeHoursDirect() {
 
 export function getFreeHours(used: TimeIntervals) {
   const today = dayjs(dayjs().toDate().toDateString());
+  console.log(today)
+  console.log(used)
   let start = today.add(9, "hour");
   const end = today.add(17, "hour");
 
@@ -34,6 +36,8 @@ export function getFreeHours(used: TimeIntervals) {
       }
     }
   }
+
+  console.log(freeHours)
 
   return { freeHours, minutesFree }
 }
