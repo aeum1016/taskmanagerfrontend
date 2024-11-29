@@ -1,5 +1,7 @@
-import { FC } from 'react';
-import { Stack, Text } from '@mantine/core';
+"use client";
+
+import { FC, useEffect, useState } from 'react';
+import { Stack } from '@mantine/core';
 import { getTasks } from '@/app/api/task/routes';
 import ITask from '@/enums/Task/ITask';
 import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
@@ -8,28 +10,42 @@ import { filterForCompleted, filterForNextUp, sortingFunction } from '@/enums/Ta
 import { getFreeHours } from '@/enums/Calendar/CalendarFuncs';
 import { getFreeBusy } from '@/app/api/calendar/routes';
 import dynamic from 'next/dynamic';
+import { TimeIntervals } from '@/enums/Calendar/CalendarTypes';
 
-export const Itinerary: FC = async ({ }): Promise<JSX.Element> => {
-  const todaysTasks: ITask[] = await getTasks();
+export const Itinerary: FC = ({ }): JSX.Element => {
 
-  todaysTasks.sort(sortingFunction);
+  const [hours, setHours] = useState<{
+    freeHours: TimeIntervals;
+    minutesFree: number;
+  }>()
+  const [filteredTasks, setFilteredTasks] = useState<ITask[]>([])
+  const [completedTasks, setCompletedTasks] = useState<ITask[]>([])
 
-  const busyHours = await getFreeBusy();
-  const hours = getFreeHours(busyHours);
+  useEffect(() => {
+    (async () => {
+      const todaysTasks: ITask[] = await getTasks();
 
-  const left = { left: (hours.minutesFree / 60) }
+      todaysTasks.sort(sortingFunction);
 
-  const filteredTasks = todaysTasks.filter((task) =>
-    filterForNextUp(task, left)
-  );
+      const busyHours = await getFreeBusy();
+      const hours = getFreeHours(busyHours);
+      setHours(hours);
 
-  const completedTasks = todaysTasks.filter((task) => filterForCompleted(task, true));
+      const left = { left: (hours.minutesFree / 60) }
+
+      setFilteredTasks(todaysTasks.filter((task) =>
+        filterForNextUp(task, left)
+      ));
+
+      setCompletedTasks(todaysTasks.filter((task) => filterForCompleted(task, true)));
+    })();
+  }, [])
 
   const IntervalText = dynamic(() => import('./IntervalText/IntervalText').then((mod) => mod.IntervalText), { ssr: false })
 
   return (
     <Stack className={classes.card}>
-      <IntervalText busyHours={busyHours} />
+      <IntervalText hours={hours} />
       <TaskListInternal title={"Today's Itinerary"} tasks={filteredTasks} />
       <TaskListInternal title={'Completed Tasks'} tasks={completedTasks} />
     </Stack>
