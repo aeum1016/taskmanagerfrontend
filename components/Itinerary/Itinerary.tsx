@@ -12,8 +12,13 @@ import { TimeIntervals } from '@/enums/Calendar/CalendarTypes';
 import dayjs from 'dayjs';
 import { Stack } from '@mantine/core';
 import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
+import { Session } from 'next-auth';
 
-export const Itinerary: FC = ({ }): JSX.Element => {
+interface ItineraryProps {
+  session: Session | null
+}
+
+export const Itinerary: FC<ItineraryProps> = ({ session }): JSX.Element => {
 
   const [hours, setHours] = useState<{
     freeHours: TimeIntervals;
@@ -43,7 +48,7 @@ export const Itinerary: FC = ({ }): JSX.Element => {
 
       setCompletedTasks(todaysTasks.filter((task) => filterForCompleted(task, true)));
     })();
-  }, [])
+  }, [session])
 
   const IntervalText = dynamic(() => import('./IntervalText/IntervalText').then((mod) => mod.IntervalText), { ssr: false })
 

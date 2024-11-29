@@ -6,12 +6,15 @@ import { ReloadTasks } from '@/components/ReloadTasks/ReloadTasks';
 import { CreateTaskButton } from '@/components/TaskButton/CreateTask/CreateTaskButton';
 import { TaskTable } from '@/components/TaskTable/TaskTable';
 import classes from './manager.module.css';
+import { auth } from '@/auth';
 
-const ManagerPage = () => {
+const ManagerPage = async () => {
+  const session = await auth();
+
   return (
     <Container className={classes.managerContainer}>
       <Group className={classes.managerGroup}>
-        <Itinerary />
+        <Itinerary session={session} />
         <Stack>
           <Group>
             <ReloadTasks />
