@@ -1,12 +1,8 @@
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc'
 import { FC } from 'react';
 import {
-  Spoiler,
   Table,
   TableScrollContainer,
   TableTbody,
-  TableTd,
   TableTh,
   TableThead,
   TableTr,
@@ -15,8 +11,7 @@ import { getTasks } from '@/app/api/task/routes';
 import ITask from '@/enums/Task/ITask';
 import classes from './TaskTable.module.css';
 import { filterForCompleted, sortingFunction } from '@/enums/Task/TaskSort';
-import { EditTaskButton } from '../TaskButton/EditTask/EditTaskButton';
-import { CompletedButton } from '../TaskButton/CompleteTask/CompletedButton';
+import { TableRows } from './TableRows/TableRows';
 
 interface TaskTableProps { }
 
@@ -31,33 +26,11 @@ export const TaskTable: FC<
   const completedTasks = sortedTasks.filter((task) => filterForCompleted(task, true));
 
   const openRows = openTasks.map((task) => (
-    <TableTr key={task.id}>
-      <TableTd className={classes.title}>{task.title}</TableTd>
-      <TableTd className={classes.description}>
-        <Spoiler maxHeight={22} showLabel={'See more'} hideLabel={'See less'}>
-          {task.description}
-        </Spoiler>
-      </TableTd>
-      <TableTd>{task.priority}</TableTd>
-      <TableTd>{dayjs(task.duedate).toDate().toLocaleString()}</TableTd>
-      <TableTd><EditTaskButton task={task} /></TableTd>
-      <TableTd><CompletedButton task={task} fullWidth={false} /></TableTd>
-    </TableTr>
+    <TableRows key={task.id} task={task} />
   ));
 
   const completedRows = completedTasks.map((task) => (
-    <TableTr key={task.id}>
-      <TableTd className={classes.title}>{task.title}</TableTd>
-      <TableTd className={classes.description}>
-        <Spoiler maxHeight={22} showLabel={'See more'} hideLabel={'See less'}>
-          {task.description}
-        </Spoiler>
-      </TableTd>
-      <TableTd>{task.priority}</TableTd>
-      <TableTd>{dayjs(task.duedate).toDate().toLocaleString()}</TableTd>
-      <TableTd><EditTaskButton task={task} /></TableTd>
-      <TableTd><CompletedButton task={task} fullWidth={false} /></TableTd>
-    </TableTr>
+    <TableRows key={task.id} task={task} />
   ));
 
   return (

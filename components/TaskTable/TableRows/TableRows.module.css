@@ -1,0 +1,8 @@
+.title {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.description::after {
+  font-size: x-small;
+}
