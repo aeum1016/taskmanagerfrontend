@@ -6,8 +6,8 @@ import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
 import classes from './Itinerary.module.css';
 import { filterForCompleted, filterForNextUp, sortingFunction } from '@/enums/Task/TaskSort';
 import { getFreeHours } from '@/enums/Calendar/CalendarFuncs';
-import { IntervalText } from './IntervalText/IntervalText';
 import { getFreeBusy } from '@/app/api/calendar/routes';
+import dynamic from 'next/dynamic';
 
 export const Itinerary: FC = async ({ }): Promise<JSX.Element> => {
   const todaysTasks: ITask[] = await getTasks();
@@ -24,6 +24,8 @@ export const Itinerary: FC = async ({ }): Promise<JSX.Element> => {
   );
 
   const completedTasks = todaysTasks.filter((task) => filterForCompleted(task, true));
+
+  const IntervalText = dynamic(() => import('./IntervalText/IntervalText').then((mod) => mod.IntervalText), { ssr: false })
 
   return (
     <Stack className={classes.card}>
