@@ -53,13 +53,13 @@ export async function getFreeBusyInternal(request: GetFreeBusyPayload) {
   return
 }
 
-export async function getFreeBusy() {
+export async function getFreeBusy(start: Date, end: Date, timeZone: string) {
   return await getCalendars().then(async (response) => {
     const calendarIds: { id: string }[] = response.map((calendar) => { return { id: calendar.id } })
     const freeBusy: (GetFreeBusyResponse | undefined) = await getFreeBusyInternal({
-      timeMin: dayjs(dayjs().toDate().toDateString()).toDate(),
-      timeMax: dayjs(dayjs().add(1, 'day').toDate().toDateString()).toDate(),
-      timeZone: "EST",
+      timeMin: start,
+      timeMax: end,
+      timeZone: timeZone,
       items: calendarIds
     })
     if (freeBusy?.calendars !== undefined) {

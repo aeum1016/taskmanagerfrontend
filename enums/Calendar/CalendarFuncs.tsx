@@ -2,8 +2,8 @@ import dayjs from "dayjs";
 import { TimeIntervals } from "./CalendarTypes";
 import { getFreeBusy } from "@/app/api/calendar/routes";
 
-export async function getFreeHoursDirect() {
-  const busyPeriods = await getFreeBusy();
+export async function getFreeHoursDirect(start: Date, end: Date, timeZone: string) {
+  const busyPeriods = await getFreeBusy(start, end, timeZone);
   return getFreeHours(busyPeriods);
 }
 

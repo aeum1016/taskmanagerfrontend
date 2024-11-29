@@ -1,16 +1,17 @@
 "use client";
 
 import { FC, useEffect, useState } from 'react';
-import { Stack } from '@mantine/core';
 import { getTasks } from '@/app/api/task/routes';
 import ITask from '@/enums/Task/ITask';
-import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
 import classes from './Itinerary.module.css';
 import { filterForCompleted, filterForNextUp, sortingFunction } from '@/enums/Task/TaskSort';
 import { getFreeHours } from '@/enums/Calendar/CalendarFuncs';
 import { getFreeBusy } from '@/app/api/calendar/routes';
 import dynamic from 'next/dynamic';
 import { TimeIntervals } from '@/enums/Calendar/CalendarTypes';
+import dayjs from 'dayjs';
+import { Stack } from '@mantine/core';
+import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
 
 export const Itinerary: FC = ({ }): JSX.Element => {
 
@@ -27,7 +28,10 @@ export const Itinerary: FC = ({ }): JSX.Element => {
 
       todaysTasks.sort(sortingFunction);
 
-      const busyHours = await getFreeBusy();
+      const start = dayjs(dayjs().toDate().toDateString()).toDate();
+      const end = dayjs(start).add(1, 'day').toDate();
+
+      const busyHours = await getFreeBusy(start, end, Intl.DateTimeFormat().resolvedOptions().timeZone);
       const hours = getFreeHours(busyHours);
       setHours(hours);
 
