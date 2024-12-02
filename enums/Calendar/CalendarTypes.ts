@@ -87,3 +87,17 @@ export interface CalendarListEntry {
     ]
   }
 }
+
+export interface CreateEventPayload {
+  "start": {
+    "dateTime": string,
+    "timeZone"?: string,
+  },
+  "end": {
+    "dateTime": string,
+    "timeZone"?: string,
+  },
+  "summary"?: string,
+  "location"?: string,
+  "description"?: string,
+}
