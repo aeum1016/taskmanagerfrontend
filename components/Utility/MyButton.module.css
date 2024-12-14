@@ -1,0 +1,10 @@
+.standard {
+  background-color: light-dark(
+    var(--mantine-color-secondaryDark-9),
+    var(--mantine-color-secondaryDark-2)
+  );
+  color: light-dark(
+    var(--mantine-color-secondaryDark-1),
+    var(--mantine-color-dark-9)
+  );
+}

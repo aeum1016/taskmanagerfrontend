@@ -11,19 +11,17 @@ Get id from response to put in db.
 
 Use patch or get+update to do updates. patch uses 1.5x units
 
-
-
 UX
 
 User navigates to site
 
 Session exists ? Nav to manager page : Nav to login page
 
-	Login page
-	
-	Login via Google button
+    Login page
 
-	Successful login sends to manager page
+    Login via Google button
+
+    Successful login sends to manager page
 
 Manager page
 
@@ -38,26 +36,33 @@ Tomorrow/Future Itinerary(s) (Pull all events from GCal)
 - Both of these should be called through one fetch
 
 Tasks not in today or tomorrow's itinerary, shown in a list sorted by priority (Editable through the site)
+
 - Completed tasks viewable through switch.
 - One fetch to DB.
 
 User Actions
 
 Create Event
+
 - On click
-	- Send to backend
+  - Send to backend
 
 Edit Event
+
 - On click
-	- Send to backend
+  - Send to backend
 
 Update Itineraries
+
 - On click
-	- Make it visual
-	- Repeat loop until no more time
-		- Get individual time slot
-		- Backend pulls tasks listed by priority
-		- Find multiple best fits into time slot using some algorithm
-		- Let user choose task
-		- Create and place event into that slot
-		- If time expected is more than the given slot, create second event to 
+  - Check that there is a tasks calendar for the user, if not create it.
+  - Make it visual
+  - If tasks were previously assigned, remove them.
+  - Repeat loop until no more time
+    - Get individual time slot
+    - Backend pulls tasks listed by priority
+    - Find multiple best fits into time slot using some algorithm
+    - Let user choose task
+    - Create and place event into that slot
+    - If time expected is more than the given slot, create second event to do the task again later.
+    - Mark task as complete.
