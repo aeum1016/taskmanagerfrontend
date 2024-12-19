@@ -6,7 +6,7 @@ import ITask from '@/enums/Task/ITask';
 import classes from './Itinerary.module.css';
 import { filterForCompleted, filterForNextUp, sortingFunction } from '@/enums/Task/TaskSort';
 import { getFreeHours } from '@/enums/Calendar/CalendarFuncs';
-import { getFreeBusy } from '@/app/api/calendar/routes';
+import { getAllCalTasks, getCalTasks, getFreeBusy } from '@/app/api/calendar/routes';
 import dynamic from 'next/dynamic';
 import { TimeIntervals } from '@/enums/Calendar/CalendarTypes';
 import dayjs from 'dayjs';
@@ -20,6 +20,7 @@ interface ItineraryProps {
 
 export const Itinerary: FC<ItineraryProps> = ({ session }): JSX.Element => {
 
+
   const [hours, setHours] = useState<{
     freeHours: TimeIntervals;
     minutesFree: number;
@@ -29,6 +30,8 @@ export const Itinerary: FC<ItineraryProps> = ({ session }): JSX.Element => {
 
   useEffect(() => {
     (async () => {
+      console.log(await getAllCalTasks(dayjs().toDate(), dayjs().add(5, 'day').toDate()))
+      console.log(await getFreeBusy(dayjs().toDate(), dayjs().add(5, 'day').toDate(), "America/New_York"))
       const todaysTasks: ITask[] = await getTasks();
 
       todaysTasks.sort(sortingFunction);

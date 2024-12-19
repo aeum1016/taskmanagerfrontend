@@ -35,7 +35,7 @@ Tomorrow/Future Itinerary(s) (Pull all events from GCal)
 
 - Both of these should be called through one fetch
 
-Tasks not in today or tomorrow's itinerary, shown in a list sorted by priority (Editable through the site)
+Tasks not in today or tomorrow's itinerary, shown in a list sorted by priority (editable through the site)
 
 - Completed tasks viewable through switch.
 - One fetch to DB.
@@ -66,3 +66,11 @@ Update Itineraries
     - Create and place event into that slot
     - If time expected is more than the given slot, create second event to do the task again later.
     - Mark task as complete.
+
+Features
+
+- Add tasks
+- View tasks
+- View days from cal
+- Add tasks to days
+- Update tasks
