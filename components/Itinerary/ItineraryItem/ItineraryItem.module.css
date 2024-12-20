@@ -1,0 +1,19 @@
+.card {
+  position: absolute;
+  background-color: light-dark(var(--mantine-color-secondaryLight-1), var(--mantine-color-secondaryLight-9));
+  width: 95%;
+  padding: 0.25rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: light-dark(var(--mantine-color-secondaryLight-2), var(--mantine-color-secondaryLight-7));
+  text-align: start;
+}
+
+.title {
+  font-size: medium;
+  font-weight: 600;
+}
+
+.text {
+  font-size: small;
+}

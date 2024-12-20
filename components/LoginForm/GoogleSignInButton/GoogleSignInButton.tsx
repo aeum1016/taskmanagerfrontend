@@ -1,9 +1,13 @@
 import { handleGoogleSignIn } from '@/auth/handleGoogleSignIn';
+import { Button } from '@mantine/core';
+import { GoogleIcon } from './GoogleIcon';
 
 const GoogleSignInButton = () => {
   return (
     <form action={handleGoogleSignIn}>
-      <button type="submit">Sign in via Google</button>
+      <Button type={"submit"} leftSection={<GoogleIcon />}>
+        Sign In via Google
+      </Button>
     </form>
   );
 };

@@ -1,0 +1,13 @@
+.box {
+  position: absolute;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: light-dark(var(--mantine-color-secondaryLight-2), var(--mantine-color-secondaryLight-7));
+  text-align: start;
+}
+
+.time {
+  font-size: small;
+  margin-left: 1rem;
+}

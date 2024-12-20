@@ -1,5 +1,26 @@
-.card {
+.stack {
+  display: flex;
+  align-items: center;
   height: 100%;
-  min-width: 20rem;
-  max-width: 28rem;
+  width: 30rem;
+}
+
+.grid {
+  width: 100%
+}
+
+.gridcol {
+  text-align: center;
+}
+
+.box {
+  max-height: 80vh;
+  width: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.box::-webkit-scrollbar {
+  display: none;
 }

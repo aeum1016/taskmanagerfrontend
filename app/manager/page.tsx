@@ -8,6 +8,7 @@ import { TaskTable } from '@/components/TaskTable/TaskTable';
 import classes from './manager.module.css';
 import { auth } from '@/auth';
 import { CreateEvent } from '@/components/Temp/CreateEvent';
+import dayjs from 'dayjs';
 
 const ManagerPage = async () => {
   const session = await auth();

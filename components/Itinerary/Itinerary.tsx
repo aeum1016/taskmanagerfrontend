@@ -1,65 +1,58 @@
 "use client";
 
 import { FC, useEffect, useState } from 'react';
-import { getTasks } from '@/app/api/task/routes';
-import ITask from '@/enums/Task/ITask';
 import classes from './Itinerary.module.css';
-import { filterForCompleted, filterForNextUp, sortingFunction } from '@/enums/Task/TaskSort';
-import { getFreeHours } from '@/enums/Calendar/CalendarFuncs';
-import { getAllCalTasks, getCalTasks, getFreeBusy } from '@/app/api/calendar/routes';
-import dynamic from 'next/dynamic';
-import { TimeIntervals } from '@/enums/Calendar/CalendarTypes';
+import { getAllCalTasks } from '@/app/api/calendar/routes';
+import { EventPayload } from '@/enums/Calendar/CalendarTypes';
 import dayjs from 'dayjs';
-import { Stack } from '@mantine/core';
-import { TaskListInternal } from './ItineraryInternal/ItineraryInternal';
+import { Box, Grid, GridCol, Stack } from '@mantine/core';
 import { Session } from 'next-auth';
+import { ItineraryTitle } from './ItineraryTitle/ItineraryTitle';
+import { getToday } from '@/util/DateTime/DateTimeFuncs';
+import { ItineraryDay } from './ItineraryDay/ItineraryDay';
+import { ItineraryCreateButton } from './ItineraryCreateButton/ItineraryCreateButton';
 
 interface ItineraryProps {
   session: Session | null
 }
 
 export const Itinerary: FC<ItineraryProps> = ({ session }): JSX.Element => {
+  if (session === null) return <></>
 
-
-  const [hours, setHours] = useState<{
-    freeHours: TimeIntervals;
-    minutesFree: number;
-  }>()
-  const [filteredTasks, setFilteredTasks] = useState<ITask[]>([])
-  const [completedTasks, setCompletedTasks] = useState<ITask[]>([])
+  const [todaysEvents, setTodaysEvents] = useState<EventPayload[]>([]);
+  const [tomorrowsEvents, setTomorrowsEvents] = useState<EventPayload[]>([]);
 
   useEffect(() => {
     (async () => {
-      console.log(await getAllCalTasks(dayjs().toDate(), dayjs().add(5, 'day').toDate()))
-      console.log(await getFreeBusy(dayjs().toDate(), dayjs().add(5, 'day').toDate(), "America/New_York"))
-      const todaysTasks: ITask[] = await getTasks();
-
-      todaysTasks.sort(sortingFunction);
-
-      const start = dayjs(dayjs().toDate().toDateString()).toDate();
-      const end = dayjs(start).add(1, 'day').toDate();
-
-      const busyHours = await getFreeBusy(start, end, Intl.DateTimeFormat().resolvedOptions().timeZone);
-      const hours = getFreeHours(busyHours);
-      setHours(hours);
-
-      const left = { left: (hours.minutesFree / 60) }
-
-      setFilteredTasks(todaysTasks.filter((task) =>
-        filterForNextUp(task, left)
-      ));
-
-      setCompletedTasks(todaysTasks.filter((task) => filterForCompleted(task, true)));
-    })();
+      const todays = await getAllCalTasks(getToday(), dayjs(getToday()).add(1, 'day').toDate());
+      const tomorrows = await getAllCalTasks(dayjs(getToday()).add(1, 'day').toDate(), dayjs(getToday()).add(2, 'day').toDate());
+      setTodaysEvents(todays)
+      setTomorrowsEvents(tomorrows)
+    })()
   }, [session])
 
-  const IntervalText = dynamic(() => import('./IntervalText/IntervalText').then((mod) => mod.IntervalText), { ssr: false })
-
   return (
-    <Stack className={classes.card}>
-      <IntervalText hours={hours} />
-      <TaskListInternal title={"Today's Itinerary"} tasks={filteredTasks} />
-      <TaskListInternal title={'Completed Tasks'} tasks={completedTasks} />
+    <Stack className={classes.stack}>
+      <Grid className={classes.grid} gutter={0} columns={2}>
+        <GridCol className={classes.gridcol} span={1}>
+          <ItineraryTitle date={dayjs(getToday())} />
+          <ItineraryCreateButton date={dayjs(getToday())} />
+        </GridCol>
+        <GridCol className={classes.gridcol} span={1}>
+          <ItineraryTitle date={dayjs(getToday()).add(1, 'day')} />
+          <ItineraryCreateButton date={dayjs(getToday()).add(1, 'day')} />
+        </GridCol>
+      </Grid>
+      <Box className={classes.box}>
+        <Grid className={classes.grid} gutter={0} columns={2}>
+          <GridCol className={classes.gridcol} span={1}>
+            <ItineraryDay events={todaysEvents} date={getToday().toDateString()} />
+          </GridCol>
+          <GridCol className={classes.gridcol} span={1}>
+            <ItineraryDay events={tomorrowsEvents} date={dayjs(getToday()).add(1, 'day').toDate().toDateString()} />
+          </GridCol>
+        </Grid>
+      </Box>
     </Stack>
   );
 };

@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc"
 
+export function getPercentageOfDay(dateTime: string, endDateTime: string) {
+  return (dayjs(endDateTime).diff(dayjs(dateTime), "minutes") / (24 * 60)) * 100;
+}
 
-export function getDayjs() {
-  dayjs.extend(utc)
-
-  console.log(dayjs().toDate().toLocaleString())
+export function getToday() {
+  return dayjs(dayjs().toDate().toDateString()).toDate();
 }

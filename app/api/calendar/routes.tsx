@@ -104,7 +104,7 @@ export async function getFreeBusyInternal(request: GetFreeBusyPayload) {
 
 export async function getAllCalTasks(timeMin?: Date, timeMax?: Date) {
   return await getCalendars().then(async (response) => {
-    const calendarIds: { id: string }[] = response.map((calendar) => { return { id: calendar.id } })
+    const calendarIds: { id: string, summary: string }[] = response.map((calendar) => { return { id: calendar.id, summary: calendar.summary } })
     const calTasks: EventPayload[][] = await Promise.all(
       calendarIds.map(async (calendar) => {
         const response: EventListPayload = await getCalTasks(calendar.id, timeMin, timeMax);
@@ -122,7 +122,7 @@ export async function getCalTasks(calendar: string, timeMin?: Date, timeMax?: Da
   if (!session) return;
 
   const token = await getAccessToken();
-  let url = `https://www.googleapis.com/calendar/v3/calendars/${calendar}/events?singleEvents=True&`;
+  let url = `https://www.googleapis.com/calendar/v3/calendars/${calendar}/events?singleEvents=True&orderBy=startTime&`;
   if (timeMin != undefined) url = url + `timeMin=${timeMin.toISOString()}&`
   if (timeMax != undefined) url = url + `timeMax=${timeMax.toISOString()}&`
 

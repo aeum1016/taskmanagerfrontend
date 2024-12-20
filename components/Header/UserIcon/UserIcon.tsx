@@ -23,9 +23,7 @@ export const UserIcon: FC = async (): Promise<JSX.Element> => {
         </ActionIcon>
       </MenuTarget>
       <MenuDropdown>
-        <MenuItem>
-          {isAuthenticated ? <SignOutButton /> : <GoogleSignInButton />}
-        </MenuItem>
+        {isAuthenticated ? <SignOutButton /> : <GoogleSignInButton />}
       </MenuDropdown>
     </Menu>
   );
