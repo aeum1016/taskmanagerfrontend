@@ -8,5 +8,7 @@ export default {
 export const Usage = () => (
   <Task
     task={ExampleTask}
+    buttonPrompt={"This is an example"}
+    onClick={() => { }}
   />
 );
