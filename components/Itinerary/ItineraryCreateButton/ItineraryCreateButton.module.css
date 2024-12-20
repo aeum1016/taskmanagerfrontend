@@ -2,3 +2,8 @@
   background-color: light-dark(var(--mantine-color-primaryGreen-7), var(--mantine-color-primaryGreen-7));
   width: 98%
 }
+
+.modal {
+  min-height: 80vh;
+  min-width: 80vw;
+}

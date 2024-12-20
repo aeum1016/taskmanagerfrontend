@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Card, Grid, GridCol, Group, Text } from '@mantine/core';
+import { Button, Card, Grid, GridCol, Group, Text } from '@mantine/core';
 import ITask from '@/enums/Task/ITask';
 import { CompletedButton } from '../TaskButton/CompleteTask/CompletedButton';
 import { Description } from './Description/Description';
@@ -10,9 +10,11 @@ import dynamic from 'next/dynamic';
 
 interface TaskProps {
   task: ITask;
+  buttonPrompt: string;
+  onClick: () => void;
 }
 
-export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
+export const Task: FC<TaskProps> = ({ task, buttonPrompt, onClick }): JSX.Element => {
 
   const DueDate = dynamic(() => import('./DueDate/DueDateBadge').then((mod) => mod.DueDateBadge), { ssr: false })
 
@@ -34,7 +36,9 @@ export const Task: FC<TaskProps> = ({ task }): JSX.Element => {
           <PriorityBadge priority={task.priority} />
         </GridCol>
       </Grid>
-      <CompletedButton task={task} fullWidth />
+      <Button onClick={onClick} fullWidth>
+        {buttonPrompt}
+      </Button>
       <Group className={classes.cardDescription}>
         <Description description={task.description} />
       </Group>

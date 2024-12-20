@@ -29,31 +29,6 @@ export async function getCalendars() {
   return []
 }
 
-export async function createCalEvent(calendar: string, event: CreateEventPayload) {
-
-  const session = await auth();
-  if (!session) return;
-
-  const token = await getAccessToken();
-  console.log(JSON.stringify(event))
-
-  const res = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendar}/events`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: "Bearer " + token.auth.String,
-    },
-    body: JSON.stringify(event)
-  }).catch((error: Error) => {
-    console.log(error.name + ' ' + error.message);
-    return undefined;
-  });
-  if (res !== undefined && res.ok) {
-    return await res.json();
-  }
-  return {}
-}
-
 // Returns busy intervals sorted.
 export async function getFreeBusy(start: Date, end: Date, timeZone: string) {
   return await getCalendars().then(async (response) => {
@@ -141,4 +116,29 @@ export async function getCalTasks(calendar: string, timeMin?: Date, timeMax?: Da
     return await res.json();
   }
   return undefined
+}
+
+export async function createCalEvent(calendar: string, event: CreateEventPayload) {
+
+  const session = await auth();
+  if (!session) return;
+
+  const token = await getAccessToken();
+  console.log(JSON.stringify(event))
+
+  const res = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendar}/events`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: "Bearer " + token.auth.String,
+    },
+    body: JSON.stringify(event)
+  }).catch((error: Error) => {
+    console.log(error.name + ' ' + error.message);
+    return undefined;
+  });
+  if (res !== undefined && res.ok) {
+    return await res.json();
+  }
+  return {}
 }

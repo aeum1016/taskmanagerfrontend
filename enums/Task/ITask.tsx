@@ -28,3 +28,15 @@ export interface IUpdateTaskPayload {
   tags?: string[];
   completed?: boolean;
 }
+
+export interface ITaskAsEvent {
+  id: string;
+  summary: string;
+  description: string;
+  start: {
+    dateTime: string;
+  }
+  end: {
+    dateTime: string;
+  }
+}

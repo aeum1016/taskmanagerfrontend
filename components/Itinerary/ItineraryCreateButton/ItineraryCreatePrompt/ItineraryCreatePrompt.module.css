@@ -1,0 +1,15 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasksBox {
+  width: 80%;
+  max-width: 80%;
+  height: fit-content;
+}
+
+.calBox {
+  max-width: 20%;
+  width: 30rem;
+}

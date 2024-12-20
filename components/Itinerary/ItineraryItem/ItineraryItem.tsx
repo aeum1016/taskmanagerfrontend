@@ -1,13 +1,14 @@
 import { FC } from "react"
-import { Card, Group, Spoiler, Text } from "@mantine/core"
+import { Card, Spoiler, Text } from "@mantine/core"
 import classes from "./ItineraryItem.module.css"
 import dayjs from "dayjs"
 import { EventPayload } from "@/enums/Calendar/CalendarTypes"
 import { getPercentageOfDay } from "@/util/DateTime/DateTimeFuncs"
+import { ITaskAsEvent } from "@/enums/Task/ITask"
 
 interface ItineraryItemProps {
   isEvent: boolean,
-  event: EventPayload,
+  event: EventPayload | ITaskAsEvent,
 }
 
 export const ItineraryItem: FC<ItineraryItemProps> = ({ isEvent, event }): JSX.Element => {

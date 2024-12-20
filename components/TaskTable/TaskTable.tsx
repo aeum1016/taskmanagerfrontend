@@ -7,19 +7,18 @@ import {
   TableThead,
   TableTr,
 } from '@mantine/core';
-import { getTasks } from '@/app/api/task/routes';
 import ITask from '@/enums/Task/ITask';
 import classes from './TaskTable.module.css';
 import { filterForCompleted, sortingFunction } from '@/enums/Task/TaskSort';
 import { TableRows } from './TableRows/TableRows';
 
-interface TaskTableProps { }
+interface TaskTableProps {
+  tasks: ITask[]
+}
 
 export const TaskTable: FC<
   TaskTableProps
-> = async ({ }): Promise<JSX.Element> => {
-
-  const tasks: ITask[] = await getTasks();
+> = ({ tasks }): JSX.Element => {
 
   const sortedTasks = tasks.sort(sortingFunction)
   const openTasks = sortedTasks.filter((task) => filterForCompleted(task, false));

@@ -19,24 +19,11 @@ interface ItineraryProps {
 export const Itinerary: FC<ItineraryProps> = ({ session }): JSX.Element => {
   if (session === null) return <></>
 
-  const [todaysEvents, setTodaysEvents] = useState<EventPayload[]>([]);
-  const [tomorrowsEvents, setTomorrowsEvents] = useState<EventPayload[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const todays = await getAllCalTasks(getToday(), dayjs(getToday()).add(1, 'day').toDate());
-      const tomorrows = await getAllCalTasks(dayjs(getToday()).add(1, 'day').toDate(), dayjs(getToday()).add(2, 'day').toDate());
-      setTodaysEvents(todays)
-      setTomorrowsEvents(tomorrows)
-    })()
-  }, [session])
-
   return (
     <Stack className={classes.stack}>
       <Grid className={classes.grid} gutter={0} columns={2}>
         <GridCol className={classes.gridcol} span={1}>
           <ItineraryTitle date={dayjs(getToday())} />
-          <ItineraryCreateButton date={dayjs(getToday())} />
         </GridCol>
         <GridCol className={classes.gridcol} span={1}>
           <ItineraryTitle date={dayjs(getToday()).add(1, 'day')} />
@@ -46,10 +33,10 @@ export const Itinerary: FC<ItineraryProps> = ({ session }): JSX.Element => {
       <Box className={classes.box}>
         <Grid className={classes.grid} gutter={0} columns={2}>
           <GridCol className={classes.gridcol} span={1}>
-            <ItineraryDay events={todaysEvents} date={getToday().toDateString()} />
+            <ItineraryDay date={getToday().toDateString()} />
           </GridCol>
           <GridCol className={classes.gridcol} span={1}>
-            <ItineraryDay events={tomorrowsEvents} date={dayjs(getToday()).add(1, 'day').toDate().toDateString()} />
+            <ItineraryDay date={dayjs(getToday()).add(1, 'day').toDate().toDateString()} />
           </GridCol>
         </Grid>
       </Box>

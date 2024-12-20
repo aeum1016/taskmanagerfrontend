@@ -1,8 +1,7 @@
 .card {
   display: flex;
   align-items: center;
-  height: 200vh;
-  max-height: 200vh;
+  height: 80vh;
   width: 100%;
   padding-inline: 0;
 }
