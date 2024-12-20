@@ -3,7 +3,7 @@
 import { cookies } from "next/headers"
 import { getAccessToken } from "../user/routes";
 import { auth } from "@/auth";
-import { CalendarList, CreateEventPayload, GetFreeBusyPayload, GetFreeBusyResponse, TimeIntervals, EventPayload, EventListPayload } from "@/enums/Calendar/CalendarTypes";
+import { CalendarList, CreateEventPayload, GetFreeBusyPayload, GetFreeBusyResponse, TimeIntervals, EventPayload, EventListPayload, CreateEventFuncPayload } from "@/enums/Calendar/CalendarTypes";
 import dayjs from "dayjs";
 
 export async function getCalendars() {
@@ -118,13 +118,26 @@ export async function getCalTasks(calendar: string, timeMin?: Date, timeMax?: Da
   return undefined
 }
 
-export async function createCalEvent(calendar: string, event: CreateEventPayload) {
+export async function createCalEvent(calendar: string, event: CreateEventFuncPayload) {
 
   const session = await auth();
   if (!session) return;
 
   const token = await getAccessToken();
-  console.log(JSON.stringify(event))
+
+  const eventToSend: CreateEventPayload = {
+    "start": {
+      "dateTime": dayjs(event.start).format(),
+      "timeZone": Intl.DateTimeFormat().resolvedOptions().timeZone,
+    },
+    "end": {
+      "dateTime": dayjs(event.end).format(),
+      "timeZone": Intl.DateTimeFormat().resolvedOptions().timeZone,
+    },
+    "summary": event.summary,
+    "description": event.description,
+    "location": event.location,
+  }
 
   const res = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendar}/events`, {
     method: 'POST',
@@ -132,7 +145,7 @@ export async function createCalEvent(calendar: string, event: CreateEventPayload
       'Content-Type': 'application/json',
       Authorization: "Bearer " + token.auth.String,
     },
-    body: JSON.stringify(event)
+    body: JSON.stringify(eventToSend)
   }).catch((error: Error) => {
     console.log(error.name + ' ' + error.message);
     return undefined;

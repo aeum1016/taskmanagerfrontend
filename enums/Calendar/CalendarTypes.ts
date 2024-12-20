@@ -88,6 +88,14 @@ export interface CalendarListEntry {
   }
 }
 
+export interface CreateEventFuncPayload {
+  "start": string,
+  "end": string,
+  "summary"?: string,
+  "location"?: string,
+  "description"?: string,
+}
+
 export interface CreateEventPayload {
   "start": {
     "dateTime": string,
@@ -101,7 +109,6 @@ export interface CreateEventPayload {
   "location"?: string,
   "description"?: string,
 }
-
 
 export interface EventListPayload {
   "kind": "calendar#events",

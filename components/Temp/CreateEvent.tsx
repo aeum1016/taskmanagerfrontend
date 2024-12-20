@@ -18,14 +18,8 @@ export const CreateEvent: FC<CreateEventProps> = (): JSX.Element => {
         onClick={() =>
           createCalEvent("primary",
             {
-              "start": {
-                "dateTime": dayjs().format(),
-                "timeZone": Intl.DateTimeFormat().resolvedOptions().timeZone,
-              },
-              "end": {
-                "dateTime": dayjs().add(1, "hour").format(),
-                "timeZone": Intl.DateTimeFormat().resolvedOptions().timeZone,
-              },
+              "start": dayjs().format(),
+              "end": dayjs().add(1, 'hour').format(),
               "summary": "Test",
               "description": "Testing description",
               "location": "Test location",

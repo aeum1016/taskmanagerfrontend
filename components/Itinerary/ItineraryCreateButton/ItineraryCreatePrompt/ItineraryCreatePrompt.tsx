@@ -40,8 +40,8 @@ export const ItineraryCreatePrompt: FC<ItineraryCreatePromptProps> = ({ startTim
             buttonPrompt={"hello"}
             onClick={() => {
               setTasks(prev => prev.filter(t => task.id !== t.id))
-              const times = getEventTimes(freeTime, task);
-              setTasksAsEvents(prev => [...prev, getTaskAsEvent(task, times.start, times.end)])
+              // const times = getEventTimes(freeTime, task);
+              // setTasksAsEvents(prev => [...prev, getTaskAsEvent(task, times.start, times.end)])
             }} />
         })}
       </SimpleGrid>
