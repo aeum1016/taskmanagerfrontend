@@ -27,7 +27,9 @@ export const Itinerary: FC<ItineraryProps> = ({ session }): JSX.Element => {
         </GridCol>
         <GridCol className={classes.gridcol} span={1}>
           <ItineraryTitle date={dayjs(getToday()).add(1, 'day')} />
-          <ItineraryCreateButton date={dayjs(getToday()).add(1, 'day')} />
+          <Box pt={10}>
+            <ItineraryCreateButton date={dayjs(getToday()).add(1, 'day')} />
+          </Box>
         </GridCol>
       </Grid>
       <Box className={classes.box}>

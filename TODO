@@ -70,7 +70,18 @@ Update Itineraries
 Features
 
 - Add tasks
+  - Relatively done
 - View tasks
+  - Relatively done
 - View days from cal
+  - Relatively done
 - Add tasks to days
+  - Need to do
+  - Open window from the left
+  - Prompt
+    - List current open tasks in priority order
+    - Show current schedule
+    - Show current block of time to fill
+    - Allow click on task to create event
+    - Reload the page, new block of time to fill.
 - Update tasks

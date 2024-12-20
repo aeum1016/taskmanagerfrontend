@@ -6,10 +6,8 @@ import dayjs from "dayjs"
 import ITask, { ITaskAsEvent } from "@/enums/Task/ITask"
 import { TimeIntervals } from "@/enums/Calendar/CalendarTypes"
 import { ItineraryDay } from "../../ItineraryDay/ItineraryDay"
-import { TaskTable } from "@/components/TaskTable/TaskTable"
 import classes from "./ItineraryCreatePrompt.module.css"
 import { Task } from "@/components/Task/Task"
-import { getTaskAsEvent } from "@/util/Task/TaskFuncs"
 
 interface ItineraryCreatePromptProps {
   startTime: Date
@@ -37,7 +35,7 @@ export const ItineraryCreatePrompt: FC<ItineraryCreatePromptProps> = ({ startTim
         {tasks.map((task) => {
           return <Task
             task={task}
-            buttonPrompt={"hello"}
+            buttonPrompt={"Add to Itinerary"}
             onClick={() => {
               setTasks(prev => prev.filter(t => task.id !== t.id))
               // const times = getEventTimes(freeTime, task);

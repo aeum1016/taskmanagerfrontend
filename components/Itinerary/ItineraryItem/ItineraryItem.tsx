@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Card, Spoiler, Text } from "@mantine/core"
+import { Card, Group, Spoiler, Text } from "@mantine/core"
 import classes from "./ItineraryItem.module.css"
 import dayjs from "dayjs"
 import { EventPayload } from "@/enums/Calendar/CalendarTypes"
@@ -18,8 +18,8 @@ export const ItineraryItem: FC<ItineraryItemProps> = ({ isEvent, event }): JSX.E
       top={getPercentageOfDay(dayjs(event.start.dateTime).toDate().toDateString(), event.start.dateTime) + "%"}
       h={getPercentageOfDay(event.start.dateTime, event.end.dateTime) + "%"}
     >
-      <Text className={classes.text}>{dayjs(event.start.dateTime).format("HH:mm")}-{dayjs(event.end.dateTime).format("HH:mm")}</Text>
       <Text className={classes.title}>{event.summary}</Text>
+      <Text className={classes.text}>{dayjs(event.start.dateTime).format("HH:mm")}-{dayjs(event.end.dateTime).format("HH:mm")}</Text>
       <Spoiler
         maxHeight={0}
         showLabel={<Text className={classes.text}>show description</Text>}
